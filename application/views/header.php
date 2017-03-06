@@ -21,7 +21,6 @@
     <link href="<?php echo base_url();?>public/css/animate.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
     <script src="<?php echo base_url();?>public/js/jquery.min.js?v=2.1.4"></script>
-    <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
     <script src="<?php echo base_url();?>public/js/bootstrap.min.js?v=3.3.5"></script>
     <script src="<?php echo base_url();?>public/js/plugins/iCheck/icheck.min.js"></script>
     <script>

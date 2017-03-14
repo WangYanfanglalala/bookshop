@@ -14,6 +14,7 @@ class BaseModel extends CI_Model
     {
         parent::__construct();
         $this->load->database();
+        $this->load->library('core/TCore');
         if ($tbl_name) {
             $this->tableName = $tbl_name;
         }

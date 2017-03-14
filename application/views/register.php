@@ -65,7 +65,7 @@
             document.getElementById("password").focus();
             return false;
         }
-        var url = 'http://localhost:81/bookshop/index.php/welcome/signup';
+        var url = 'http://localhost:81/bookshop/index.php/welcome/userRegister';
         var data = {
             username: username,
             name: name,
@@ -76,7 +76,7 @@
             if (rsps.result) {
                 alert('注册成功');
             } else {
-                alert('注册失败');
+                alert(rsps.msg);
             }
         }, 'json');
     }

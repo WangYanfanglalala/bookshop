@@ -1,4 +1,5 @@
 <?php
+require_once BASEPATH . 'core/Controller.php';
 
 /**
  * Created by PhpStorm.
@@ -18,6 +19,13 @@ class BaseController extends CI_Controller
     {
         $this->load->view('header');
         $this->load->view($template, $data);
-        $this->load->view('footer');
+    }
+
+    // 客户端请求数据统一返回的格式
+    public function rspsJSON($result, $msg = '', $data = array())
+    {
+        $data = array('result' => $result, 'msg' => $msg, 'data' => $data);
+        echo json_encode($data);
+        die();
     }
 }

@@ -1,13 +1,12 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Welcome extends CI_Controller
+class Welcome extends BaseController
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->helper("url");
-        $this->load->model("LoginModel");
+        $this->load->model("UserModel");
     }
 
     /**
@@ -27,26 +26,33 @@ class Welcome extends CI_Controller
      */
     public function index()
     {
-        $this->load->view('header');
-        $this->load->view('index');
+        $this->loadView('index');
     }
 
     public function login()
     {
-        $this->load->view('header');
-        $this->load->view('login');
+        $this->loadView('login');
     }
 
     public function signup()
+    {
+        $this->loadView('register');
+    }
+
+    public function userRegister()
     {
         $username = $this->input->post("username");
         $name = $this->input->post('name');
         $password = $this->input->post('password');
         $email = $this->input->post('email');
+        //查询用户名是否已经存在
+        if ($this->UserModel->SelectUserInformation($username)) {
+            $this->rspsJSON(false, '用户名已存在', '');
+        } else {
+            //插入用户信息到tbl_user表中
+            $data = $this->UserModel->InsertUserInformation($username, $name, $email, $password);
+            $this->rspsJSON(true, '', $data);
+        }
 
-        $insert_result = $this->LoginModel->signup($username, $name, $email, $password);
-        echo $insert_result;
-        $this->load->view('header');
-        $this->load->view('register', $insert_result);
     }
 }

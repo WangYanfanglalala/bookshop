@@ -352,6 +352,7 @@ if ( ! is_php('5.4'))
  *
  */
 	// Load the base controller class
+    require APPPATH.'controllers/BaseController.php';
 	require_once BASEPATH.'core/Controller.php';
 
 	/**

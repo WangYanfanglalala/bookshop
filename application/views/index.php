@@ -1,4 +1,4 @@
-<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+<body class="fixed-sidebar full-height                -layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->
     <nav class="navbar-default navbar-static-side" role="navigation">
@@ -41,19 +41,19 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="index_v1.html" data-index="0">主页示例一</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index" data-index="0">主页示例一</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index2">主页示例二</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v3.html">主页示例三</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index3">主页示例三</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v4.html">主页示例四</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index4">主页示例四</a>
                         </li>
                         <li>
-                            <a href="index_v5.html" target="_blank">主页示例五</a>
+                            <a href="<?php echo base_url();?>index.php/welcome/index5" target="_blank">主页示例五</a>
                         </li>
                     </ul>
 

@@ -29,6 +29,26 @@ class Welcome extends BaseController
         $this->loadView('index');
     }
 
+    public function index2()
+    {
+        $this->loadView('index_v2');
+    }
+
+    public function index3()
+    {
+        $this->loadView('index_v3');
+    }
+
+    public function index4()
+    {
+        $this->loadView('index_v4');
+    }
+
+    public function index5()
+    {
+        $this->loadView('index_v5');
+    }
+
     public function login()
     {
         $this->loadView('login');

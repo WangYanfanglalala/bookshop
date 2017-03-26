@@ -70,9 +70,28 @@ class Welcome extends BaseController
             $this->rspsJSON(false, '用户名已存在', '');
         } else {
             //插入用户信息到tbl_user表中
-            $data = $this->UserModel->InsertUserInformation($username, $name, $email, $password);
+            $encrypted_password = sha1($password);
+            $data = $this->UserModel->InsertUserInformation($username, $name, $email, $encrypted_password);
             $this->rspsJSON(true, '', $data);
         }
 
+    }
+
+    public function userLogin()
+    {
+        $username = $this->input->post("username");
+        $password = $this->input->post('password');
+        $username_result = $this->UserModel->SelectUserInformation($username);
+        if (empty($username_result)) {
+            $this->rspsJSON(false, '用户不存在', '');
+        } else {
+            $encrypted_password = sha1($password);
+            $data = $this->UserModel->selectUser($username, $encrypted_password);
+            if (empty($data)) {
+                $this->rspsJSON(false, '密码不正确', '');
+            } else {
+                $this->rspsJSON(true, '登录成功', '');
+            }
+        }
     }
 }

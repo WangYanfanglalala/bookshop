@@ -21,7 +21,7 @@
                 <input type="text" id="name" class="form-control" placeholder="请输入姓名" required="">
             </div>
             <div class="form-group">
-                <input type="text" id="email" class="form-control" placeholder="请输入邮箱" required="">
+                <input type="email" id="email" class="form-control" placeholder="请输入邮箱" required="">
             </div>
             <div class="form-group">
                 <input type="password" id="password" class="form-control" placeholder="请输入密码" required="">
@@ -65,7 +65,7 @@
             document.getElementById("password").focus();
             return false;
         }
-        var url = 'http://localhost:81/bookshop/index.php/welcome/userRegister';
+        var url = '<?php echo base_url(); ?>index.php/welcome/userRegister';
         var data = {
             username: username,
             name: name,
@@ -75,6 +75,7 @@
         $.post(url, data, function (rsps) {
             if (rsps.result) {
                 alert('注册成功');
+                window.location.href = '<?php echo base_url()?>index.php/welcome/login'
             } else {
                 alert(rsps.msg);
             }

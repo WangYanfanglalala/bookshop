@@ -39,4 +39,12 @@ class UserModel extends BaseModel
         $model = new BaseModel('tbl_user');
         return $model->getRow($field = "*", $queryData);
     }
+    public function selectUser($username, $password){
+        $queryData = array(
+            'username' => $username,
+            'password' => $password
+        );
+        $model = new BaseModel('tbl_user');
+        return $model ->getRow($field = "*", $queryData);
+    }
 }

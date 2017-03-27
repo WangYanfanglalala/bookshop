@@ -41,19 +41,19 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="index_v1.html" data-index="0">主页示例一</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index" data-index="0">主页示例一</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index">主页示例二</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v3.html">主页示例三</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index3">主页示例三</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="index_v4.html">主页示例四</a>
+                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index4">主页示例四</a>
                         </li>
                         <li>
-                            <a href="index_v5.html" target="_blank">主页示例五</a>
+                            <a href="<?php echo base_url();?>index.php/welcome/index5" target="_blank">主页示例五</a>
                         </li>
                     </ul>
 
@@ -61,14 +61,13 @@
                 <li>
                     <a href="#"><i class="fa fa-table"></i> <span class="nav-label">商品管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<?php echo base_url()?>index.php/product/goodslist">商品列表</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/goodslist">商品列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="table_jqgrid.html">添加商品</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/add">添加商品</a>
                         </li>
-                        <li><a class="J_menuItem" href="table_foo_table.html">Foo Tables</a>
+                        <li><a class="J_menuItem" href="table_foo_table.html">商品分类</a>
                         </li>
-                        <li><a class="J_menuItem" href="table_bootstrap.html">Bootstrap Table
-                                <span class="label label-danger pull-right">推荐</span></a>
+                        <li><a class="J_menuItem" href="table_bootstrap.html">商品品牌</a>
                         </li>
                     </ul>
                 </li>
@@ -164,7 +163,7 @@
                         </ul>
                     </li>
                     <li class="hidden-xs">
-                        <a href="index_v1.html" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
+                        <a href="<?php echo base_url();?>index.php/welcome/index" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
                     </li>
                     <li class="dropdown hidden-xs">
                         <a class="right-sidebar-toggle" aria-expanded="false">
@@ -179,7 +178,7 @@
             </button>
             <nav class="page-tabs J_menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="index_v1.html">首页</a>
+                    <a href="javascript:;" class="active J_menuTab" data-id="<?php echo base_url();?>index.php/welcome/index">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -201,7 +200,7 @@
             <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v2.html?v=4.0" frameborder="0" data-id="index_v2.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?php echo base_url();?>index.php/welcome/index2" frameborder="0" data-id="index_v2.html" seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>

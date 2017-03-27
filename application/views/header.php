@@ -16,6 +16,10 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="favicon.ico">
+    <script src="<?php echo base_url(); ?>public/js/content.min.js?v=1.0.0"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/staps/jquery.steps.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/validate/messages_zh.min.js"></script>
     <link href="<?php echo base_url(); ?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
@@ -34,6 +38,19 @@
     <script src="<?php echo base_url(); ?>public/js/plugins/dataTables/jquery.dataTables.js"></script>
     <script src="<?php echo base_url(); ?>public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>public/js/content.min.js?v=1.0.0"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/chosen/chosen.jquery.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/jsKnob/jquery.knob.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/prettyfile/bootstrap-prettyfile.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/nouslider/jquery.nouislider.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/switchery/switchery.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/ionRangeSlider/ion.rangeSlider.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/clockpicker/clockpicker.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/cropper/cropper.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/demo/form-advanced-demo.min.js"></script>
     <script>
         $(document).ready(function () {
             $(".dataTables-example").dataTable();
@@ -56,6 +73,9 @@
         $(document).ready(function () {
             $(".i-checks").iCheck({checkboxClass: "icheckbox_square-green", radioClass: "iradio_square-green",})
         });
+    </script>
+    <script>
+        $(document).ready(function(){$("#wizard").steps();$("#form").steps({bodyTag:"fieldset",onStepChanging:function(event,currentIndex,newIndex){if(currentIndex>newIndex){return true}if(newIndex===3&&Number($("#age").val())<18){return false}var form=$(this);if(currentIndex<newIndex){$(".body:eq("+newIndex+") label.error",form).remove();$(".body:eq("+newIndex+") .error",form).removeClass("error")}form.validate().settings.ignore=":disabled,:hidden";return form.valid()},onStepChanged:function(event,currentIndex,priorIndex){if(currentIndex===2&&Number($("#age").val())>=18){$(this).steps("next")}if(currentIndex===2&&priorIndex===3){$(this).steps("previous")}},onFinishing:function(event,currentIndex){var form=$(this);form.validate().settings.ignore=":disabled";return form.valid()},onFinished:function(event,currentIndex){var form=$(this);form.submit()}}).validate({errorPlacement:function(error,element){element.before(error)},rules:{confirm:{equalTo:"#password"}}})});
     </script>
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </head>

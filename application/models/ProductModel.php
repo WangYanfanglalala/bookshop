@@ -14,4 +14,18 @@ class ProductModel extends BaseModel
         $this->load->database();
         $this->tableName = 'tbl_goods';
     }
+
+    public function getProductList()
+    {
+        $query_string = "SELECT * FROM `tbl_goods`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
+    public function insertGoodsInfomation($goods_data)
+    {
+        $model = new BaseModel('tbl_goods');
+        return $model->insert($goods_data);
+    }
 }

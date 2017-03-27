@@ -11,6 +11,34 @@ class Product extends BaseController
 
     public function goodslist()
     {
-        $this->loadView('product_list');
+        $data = $this->ProductModel->getProductList();
+        $results["data"] = $data;
+        $this->loadView('product_list', $results);
+    }
+
+    public function add()
+    {
+        $this->loadView('add_product');
+    }
+
+    public function addProduct()
+    {
+        date_default_timezone_set('PRC');
+        $data = array(
+            "goods_sn" => $this->input->post('goods_sn'),
+            "goods_name" => $this->input->post('goods_name'),
+            "goods_type" => $this->input->post('goods_type'),
+            "goods_brand" => $this->input->post('goods_brand'),
+            "promote_start_date" => $this->input->post('promote_start_date'),
+            "promote_end_date" => $this->input->post('promote_end_date'),
+            "market_price" => $this->input->post('market_price'),
+            "shop_price" => $this->input->post('shop_price'),
+            "promote_price" => $this->input->post('promote_price'),
+            "sale_time" => $this->input->post('sale_time'),
+            "add_time" => date('y-m-d h:i:s', time()),
+            "goods_img" => $this->input->post('goods_img'),
+            "sale_date" =>$this->input->post('sale_date')
+        );
+        $result = $this->ProductModel->insertGoodsInfomation($data);
     }
 }

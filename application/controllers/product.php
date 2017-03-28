@@ -18,7 +18,12 @@ class Product extends BaseController
 
     public function add()
     {
-        $this->loadView('add_product');
+        $data["goods_type"] = $this->ProductModel->getProductFirstType();
+        foreach($data["goods_type"] as $item){
+            $item->sub_type = $this->ProductModel->getProductSecondType($item->id);
+        }
+        $data["goods_brand"] = $this->ProductModel->getProductBrand();
+        $this->loadView('add_product',$data);
     }
 
     public function addProduct()
@@ -40,5 +45,17 @@ class Product extends BaseController
             "sale_date" =>$this->input->post('sale_date')
         );
         $result = $this->ProductModel->insertGoodsInfomation($data);
+        $this->rspsJSON(true, '', $result);
+    }
+    public function type(){
+        $data["goods_type"] = $this->ProductModel->getProductFirstType();
+        foreach($data["goods_type"] as $item){
+            $item->sub_type = $this->ProductModel->getProductSecondType($item->id);
+        }
+        $this->load->view('product_type',$data);
+    }
+    public function brand(){
+        $data["goods_brand"] = $this->ProductModel->getProductBrand();
+        $this->load->view('product_brand',$data);
     }
 }

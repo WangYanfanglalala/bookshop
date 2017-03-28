@@ -65,9 +65,9 @@
                         </li>
                         <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/add">添加商品</a>
                         </li>
-                        <li><a class="J_menuItem" href="table_foo_table.html">商品分类</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/type">商品分类</a>
                         </li>
-                        <li><a class="J_menuItem" href="table_bootstrap.html">商品品牌</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/brand">商品品牌</a>
                         </li>
                     </ul>
                 </li>

@@ -51,6 +51,48 @@
     <script src="<?php echo base_url(); ?>public/js/plugins/clockpicker/clockpicker.js"></script>
     <script src="<?php echo base_url(); ?>public/js/plugins/cropper/cropper.min.js"></script>
     <script src="<?php echo base_url(); ?>public/js/demo/form-advanced-demo.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/summernote/summernote.min.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/summernote/summernote-zh-CN.js"></script>
+    <script src="<?php echo base_url(); ?>public/js/plugins/nestable/jquery.nestable.js"></script>
+    <script>
+        $(document).ready(function () {
+            var updateOutput = function (e) {
+                var list = e.length ? e : $(e.target), output = list.data("output");
+                if (window.JSON) {
+                    output.val(window.JSON.stringify(list.nestable("serialize")))
+                } else {
+                    output.val("浏览器不支持")
+                }
+            };
+            $("#nestable").nestable({group: 1}).on("change", updateOutput);
+            $("#nestable2").nestable({group: 1}).on("change", updateOutput);
+            updateOutput($("#nestable").data("output", $("#nestable-output")));
+            updateOutput($("#nestable2").data("output", $("#nestable2-output")));
+            $("#nestable-menu").on("click", function (e) {
+                var target = $(e.target), action = target.data("action");
+                if (action === "expand-all") {
+                    $(".dd").nestable("expandAll")
+                }
+                if (action === "collapse-all") {
+                    $(".dd").nestable("collapseAll")
+                }
+            })
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $(".summernote").summernote({lang: "zh-CN"})
+        });
+        var edit = function () {
+            $("#eg").addClass("no-padding");
+            $(".click2edit").summernote({lang: "zh-CN", focus: true})
+        };
+        var save = function () {
+            $("#eg").removeClass("no-padding");
+            var aHTML = $(".click2edit").code();
+            $(".click2edit").destroy()
+        };
+    </script>
     <script>
         $(document).ready(function () {
             $(".dataTables-example").dataTable();
@@ -75,7 +117,44 @@
         });
     </script>
     <script>
-        $(document).ready(function(){$("#wizard").steps();$("#form").steps({bodyTag:"fieldset",onStepChanging:function(event,currentIndex,newIndex){if(currentIndex>newIndex){return true}if(newIndex===3&&Number($("#age").val())<18){return false}var form=$(this);if(currentIndex<newIndex){$(".body:eq("+newIndex+") label.error",form).remove();$(".body:eq("+newIndex+") .error",form).removeClass("error")}form.validate().settings.ignore=":disabled,:hidden";return form.valid()},onStepChanged:function(event,currentIndex,priorIndex){if(currentIndex===2&&Number($("#age").val())>=18){$(this).steps("next")}if(currentIndex===2&&priorIndex===3){$(this).steps("previous")}},onFinishing:function(event,currentIndex){var form=$(this);form.validate().settings.ignore=":disabled";return form.valid()},onFinished:function(event,currentIndex){var form=$(this);form.submit()}}).validate({errorPlacement:function(error,element){element.before(error)},rules:{confirm:{equalTo:"#password"}}})});
+        $(document).ready(function () {
+            $("#wizard").steps();
+            $("#form").steps({
+                bodyTag: "fieldset", onStepChanging: function (event, currentIndex, newIndex) {
+                    if (currentIndex > newIndex) {
+                        return true
+                    }
+                    if (newIndex === 3 && Number($("#age").val()) < 18) {
+                        return false
+                    }
+                    var form = $(this);
+                    if (currentIndex < newIndex) {
+                        $(".body:eq(" + newIndex + ") label.error", form).remove();
+                        $(".body:eq(" + newIndex + ") .error", form).removeClass("error")
+                    }
+                    form.validate().settings.ignore = ":disabled,:hidden";
+                    return form.valid()
+                }, onStepChanged: function (event, currentIndex, priorIndex) {
+                    if (currentIndex === 2 && Number($("#age").val()) >= 18) {
+                        $(this).steps("next")
+                    }
+                    if (currentIndex === 2 && priorIndex === 3) {
+                        $(this).steps("previous")
+                    }
+                }, onFinishing: function (event, currentIndex) {
+                    var form = $(this);
+                    form.validate().settings.ignore = ":disabled";
+                    return form.valid()
+                }, onFinished: function (event, currentIndex) {
+                    var form = $(this);
+                    form.submit()
+                }
+            }).validate({
+                errorPlacement: function (error, element) {
+                    element.before(error)
+                }, rules: {confirm: {equalTo: "#password"}}
+            })
+        });
     </script>
     <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 </head>

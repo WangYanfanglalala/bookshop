@@ -1,7 +1,5 @@
-
 <!DOCTYPE html>
 <html>
-
 <head>
 
     <meta charset="utf-8">
@@ -9,16 +7,15 @@
     <title>H+ 后台主题UI框架 - 数据表格</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-    <link rel="shortcut icon" href="<?php echo base_url();?>public/favicon.ico">
-    <link href="<?php echo base_url();?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>public/favicon.ico">
+    <link href="<?php echo base_url(); ?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!-- Data Tables -->
-    <link href="<?php echo base_url();?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/animate.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/animate.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
     <base target="_blank">
 </head>
-
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -29,11 +26,12 @@
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
-                            <th>编号</th>
-                            <th>商品名称</th>
-                            <th>货号</th>
-                            <th>价格</th>
-                            <th>上架时间</th>
+                            <th>订单号</th>
+                            <th>用户名,下单时间</th>
+                            <th>收货人，收货地址</th>
+                            <th>购买产品</th>
+                            <th>总金额</th>
+                            <th>订单状态</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -41,25 +39,21 @@
                         foreach ($data as $item) {
                             ?>
                             <tr class="gradeX">
-                                <td><?php echo $item->goods_id ?></td>
-                                <td><?php echo $item->goods_name ?></td>
-                                <td><?php echo $item->goods_sn ?></td>
-                                <td class="center"><?php echo $item->shop_price ?></td>
-                                <td class="center"><?php echo $item->sale_date ?></td>
+                                <td><?php echo $item->order_id ?></td>
+                                <td><?php echo $item->user_id . '  ' . $item->create_time ?></td>
+                                <td>
+                                    <p><?php echo $item->receive_man ?></p>
+
+                                    <p><?php echo $item->country . ' ' . $item->province . ' ' . $item->city . ' ' . $item->distinct . ' ' . $item->address ?></p>
+                                </td>
+                                <td class="center"><?php echo $item->goods_amount ?></td>
+                                <td class="center"><?php echo $item->money_paid ?></td>
+                                <td class="center">查看详情</td>
                             </tr>
                             <?php
                         }
                         ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>编号</th>
-                            <th>商品名称</th>
-                            <th>货号</th>
-                            <th>价格</th>
-                            <th>上架时间</th>
-                        </tr>
-                        </tfoot>
                     </table>
 
                 </div>

@@ -13,7 +13,7 @@ class Product extends BaseController
     {
         $data = $this->ProductModel->getProductList();
         $results["data"] = $data;
-        $this->loadView('product_list', $results);
+        $this->load->view('product_list', $results);
     }
 
     public function add()

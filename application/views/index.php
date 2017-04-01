@@ -71,6 +71,19 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">订单管理</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/order/orderlist">订单列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/order/detail">发货单列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/type">退货单列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/brand">缺货登记</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>

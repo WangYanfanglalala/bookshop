@@ -71,6 +71,36 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">订单管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="graph_echarts.html">]</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_morris.html">Morris.js</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_peity.html">Peity</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_metrics.html">图表组合</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </nav>
@@ -161,7 +191,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                   </li>
                     <li class="hidden-xs">
                         <a href="<?php echo base_url();?>index.php/welcome/index" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
                     </li>

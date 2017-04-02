@@ -52,16 +52,6 @@
                         }
                         ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>品牌名称</th>
-                            <th>品牌logo</th>
-                            <th>品牌网址</th>
-                            <th>品牌描述</th>
-                            <th>品牌排序</th>
-                            <th>操作</th>
-                        </tr>
-                        </tfoot>
                     </table>
 
                 </div>

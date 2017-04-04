@@ -22,11 +22,22 @@ class OrderModel extends BaseModel
         $data = $query->result();
         return $data;
     }
-    public function getRegionName($region){
+
+    public function getRegionName($region)
+    {
         $queryData = array(
             'region_id' => $region
         );
         $model = new BaseModel('tbl_region');
-        return $model ->getRow($field = "*", $queryData);
+        return $model->getRow($field = "*", $queryData);
+    }
+
+    public function getOrderDetailByOrderId($order_id)
+    {
+        $queryData = array(
+            'order_id' => $order_id
+        );
+        $model = new BaseModel('tbl_order');
+        return $model->getRow($field = "*", $queryData);
     }
 }

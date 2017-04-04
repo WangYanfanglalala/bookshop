@@ -26,7 +26,12 @@ class Order extends BaseController
         $results["data"] = $data;
         $this->load->view('order_list', $results);
     }
-    public function detail(){
-        $this->load->view('order_detail');
+    public function detail($order_id){
+        $order_detail = $this->OrderModel->getOrderDetailByOrderId($order_id);
+        $order_detail["order_status"] = $order_detail["order_status"]?"已确认":"未确认";
+        $order_detail["shipping_status"] = $order_detail["shipping_status"]?"已发货":"未发货";
+        $order_detail["pay_status"] = $order_detail["pay_status"]?"已付款":"未付款";
+        $data["order_detail"] = $order_detail;
+        $this->load->view('order_detail',$data);
     }
 }

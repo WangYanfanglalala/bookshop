@@ -39,7 +39,7 @@
                         foreach ($data as $item) {
                             ?>
                             <tr class="gradeX">
-                                <td><?php echo $item->order_id ?></td>
+                                <td name="order_id"><?php echo $item->order_id ?></td>
                                 <td><?php echo $item->user_id . '  ' . $item->create_time ?></td>
                                 <td>
                                     <p><?php echo $item->receive_man ?></p>
@@ -48,7 +48,7 @@
                                 </td>
                                 <td class="center"><?php echo $item->goods_amount ?></td>
                                 <td class="center"><?php echo $item->money_paid ?></td>
-                                <td class="center">查看详情</td>
+                                <td><a href="<?php echo base_url();?>index.php/order/detail/<?php echo $item->order_id?>"><i class="fa fa-check text-navy"></i> 查看详情</a></td>
                             </tr>
                             <?php
                         }
@@ -82,8 +82,7 @@
     });
     function fnClickAddRow() {
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
-    }
-    ;
+    };
 </script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 

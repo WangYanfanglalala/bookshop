@@ -1,4 +1,3 @@
-
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
 <div id="wrapper">
     <!--左侧导航开始-->
@@ -9,7 +8,8 @@
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element">
-                        <span><img alt="image" class="img-circle" src="<?php echo base_url();?>public/img/profile_small.jpg" /></span>
+                        <span><img alt="image" class="img-circle"
+                                   src="<?php echo base_url(); ?>public/img/profile_small.jpg"/></span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
@@ -41,63 +41,49 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index" data-index="0">主页示例一</a>
+                            <a class="J_menuItem" href="<?php echo base_url(); ?>index.php/welcome/index"
+                               data-index="0">主页示例一</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index">主页示例二</a>
+                            <a class="J_menuItem" href="<?php echo base_url(); ?>index.php/welcome/index">主页示例二</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index3">主页示例三</a>
+                            <a class="J_menuItem" href="<?php echo base_url(); ?>index.php/welcome/index3">主页示例三</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="<?php echo base_url();?>index.php/welcome/index4">主页示例四</a>
+                            <a class="J_menuItem" href="<?php echo base_url(); ?>index.php/welcome/index4">主页示例四</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url();?>index.php/welcome/index5" target="_blank">主页示例五</a>
+                            <a href="<?php echo base_url(); ?>index.php/welcome/index5" target="_blank">主页示例五</a>
                         </li>
                     </ul>
 
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">商品管理</span><span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">商品管理</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/goodslist">商品列表</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/goodslist">商品列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/add">添加商品</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/add">添加商品</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/type">商品分类</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/type">商品分类</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url();?>index.php/product/brand">商品品牌</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/brand">商品品牌</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="fa fa fa-bar-chart-o"></i>
-                        <span class="nav-label">订单管理</span>
-                        <span class="fa arrow"></span>
-                    </a>
+                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">订单管理</span><span
+                            class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
-                        <li>
-                            <a class="J_menuItem" href="graph_echarts.html">]</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/orderlist">订单列表</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_flot.html">Flot</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/detail">发货单列表</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_morris.html">Morris.js</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/type">退货单列表</a>
                         </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_rickshaw.html">Rickshaw</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_peity.html">Peity</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
-                        </li>
-                        <li>
-                            <a class="J_menuItem" href="graph_metrics.html">图表组合</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/brand">缺货登记</a>
                         </li>
                     </ul>
                 </li>
@@ -109,10 +95,13 @@
     <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
             <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                <div class="navbar-header"><a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i
+                            class="fa fa-bars"></i> </a>
+
                     <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
                         <div class="form-group">
-                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search" id="top-search">
+                            <input type="text" placeholder="请输入您需要查找的内容 …" class="form-control" name="top-search"
+                                   id="top-search">
                         </div>
                     </form>
                 </div>
@@ -125,8 +114,10 @@
                             <li class="m-t-xs">
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="<?php echo base_url();?>public/img/a7.jpg">
+                                        <img alt="image" class="img-circle"
+                                             src="<?php echo base_url(); ?>public/img/a7.jpg">
                                     </a>
+
                                     <div class="media-body">
                                         <small class="pull-right">46小时前</small>
                                         <strong>小四</strong> 这个在日本投降书上签字的军官，建国后一定是个不小的干部吧？
@@ -139,8 +130,10 @@
                             <li>
                                 <div class="dropdown-messages-box">
                                     <a href="profile.html" class="pull-left">
-                                        <img alt="image" class="img-circle" src="<?php echo base_url();?>public/img/a4.jpg">
+                                        <img alt="image" class="img-circle"
+                                             src="<?php echo base_url(); ?>public/img/a4.jpg">
                                     </a>
+
                                     <div class="media-body ">
                                         <small class="pull-right text-navy">25小时前</small>
                                         <strong>国民岳父</strong> 如何看待“男子不满自己爱犬被称为狗，刺伤路人”？——这人比犬还凶
@@ -191,9 +184,10 @@
                                 </div>
                             </li>
                         </ul>
-                   </li>
+                    </li>
                     <li class="hidden-xs">
-                        <a href="<?php echo base_url();?>index.php/welcome/index" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> 购买</a>
+                        <a href="<?php echo base_url(); ?>index.php/welcome/index" class="J_menuItem" data-index="0"><i
+                                class="fa fa-cart-arrow-down"></i> 购买</a>
                     </li>
                     <li class="dropdown hidden-xs">
                         <a class="right-sidebar-toggle" aria-expanded="false">
@@ -208,7 +202,8 @@
             </button>
             <nav class="page-tabs J_menuTabs">
                 <div class="page-tabs-content">
-                    <a href="javascript:;" class="active J_menuTab" data-id="<?php echo base_url();?>index.php/welcome/index">首页</a>
+                    <a href="javascript:;" class="active J_menuTab"
+                       data-id="<?php echo base_url(); ?>index.php/welcome/index">首页</a>
                 </div>
             </nav>
             <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
@@ -230,7 +225,9 @@
             <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?php echo base_url();?>index.php/welcome/index2" frameborder="0" data-id="index_v2.html" seamless></iframe>
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%"
+                    src="<?php echo base_url(); ?>index.php/welcome/index2" frameborder="0" data-id="index_v2.html"
+                    seamless></iframe>
         </div>
         <div class="footer">
             <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>
@@ -262,16 +259,18 @@
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane active">
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-comments-o"></i> 主题设置</h3>
+                        <h3><i class="fa fa-comments-o"></i> 主题设置</h3>
                         <small><i class="fa fa-tim"></i> 你可以从这里选择和预览主题的布局和样式，这些设置会被保存在本地，下次打开的时候会直接应用这些设置。</small>
                     </div>
                     <div class="skin-setttings">
                         <div class="title">主题设置</div>
                         <div class="setings-item">
                             <span>收起左侧菜单</span>
+
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                                    <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox"
+                                           id="collapsemenu">
                                     <label class="onoffswitch-label" for="collapsemenu">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -284,7 +283,8 @@
 
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                                    <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox"
+                                           id="fixednavbar">
                                     <label class="onoffswitch-label" for="fixednavbar">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -299,7 +299,8 @@
 
                             <div class="switch">
                                 <div class="onoffswitch">
-                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                                    <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox"
+                                           id="boxedlayout">
                                     <label class="onoffswitch-label" for="boxedlayout">
                                         <span class="onoffswitch-inner"></span>
                                         <span class="onoffswitch-switch"></span>
@@ -334,7 +335,7 @@
                 <div id="tab-2" class="tab-pane">
 
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-comments-o"></i> 最新通知</h3>
+                        <h3><i class="fa fa-comments-o"></i> 最新通知</h3>
                         <small><i class="fa fa-tim"></i> 您当前有10条未读信息</small>
                     </div>
 
@@ -343,7 +344,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a1.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a1.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -361,7 +363,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a2.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a2.jpg">
                                 </div>
                                 <div class="media-body">
                                     HCY48之音乐大魔王会员专属皮肤已上线，快来一键换装拥有他，宣告你对华晨宇的爱吧！
@@ -373,7 +376,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -391,7 +395,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a4.jpg">
                                 </div>
 
                                 <div class="media-body">
@@ -404,7 +409,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a8.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a8.jpg">
                                 </div>
                                 <div class="media-body">
 
@@ -417,7 +423,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a7.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a7.jpg">
                                 </div>
                                 <div class="media-body">
                                     这哥们的新视频又来了，创意杠杠滴，帅炸了！
@@ -429,7 +436,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a3.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a3.jpg">
 
                                     <div class="m-t-xs">
                                         <i class="fa fa-star text-warning"></i>
@@ -447,7 +455,8 @@
                         <div class="sidebar-message">
                             <a href="#">
                                 <div class="pull-left text-center">
-                                    <img alt="image" class="img-circle message-avatar" src="<?php echo base_url();?>public/img/a4.jpg">
+                                    <img alt="image" class="img-circle message-avatar"
+                                         src="<?php echo base_url(); ?>public/img/a4.jpg">
                                 </div>
                                 <div class="media-body">
                                     我发起了一个投票 【你认为下午大盘会翻红吗？】
@@ -462,7 +471,7 @@
                 <div id="tab-3" class="tab-pane">
 
                     <div class="sidebar-title">
-                        <h3> <i class="fa fa-cube"></i> 最新任务</h3>
+                        <h3><i class="fa fa-cube"></i> 最新任务</h3>
                         <small><i class="fa fa-tim"></i> 您当前有14个任务，10个已完成</small>
                     </div>
 
@@ -560,14 +569,16 @@
         <div class="heading" draggable="true">
             <small class="chat-date pull-right">
                 2015.9.1
-            </small> 与 Beau-zihan 聊天中
+            </small>
+            与 Beau-zihan 聊天中
         </div>
 
         <div class="content">
 
             <div class="left">
                 <div class="author-name">
-                    Beau-zihan <small class="chat-date">
+                    Beau-zihan
+                    <small class="chat-date">
                         10:02
                     </small>
                 </div>

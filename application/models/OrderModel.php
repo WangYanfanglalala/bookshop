@@ -23,6 +23,22 @@ class OrderModel extends BaseModel
         return $data;
     }
 
+    public function getShippingOrderList()
+    {
+        $query_string = "SELECT * FROM `tbl_order` WHERE `shipping_status` = 1";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
+    public function getCancelOrderList()
+    {
+        $query_string = "SELECT * FROM `tbl_order` WHERE `is_cancel` = 1";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
     public function getRegionName($region)
     {
         $queryData = array(
@@ -39,5 +55,13 @@ class OrderModel extends BaseModel
         );
         $model = new BaseModel('tbl_order');
         return $model->getRow($field = "*", $queryData);
+    }
+
+    public function getOrderProductByOrderId($order_id)
+    {
+        $query_string = "SELECT * FROM `tbl_order_detail` WHERE order_id = " . $order_id;
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
     }
 }

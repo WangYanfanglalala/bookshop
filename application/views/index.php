@@ -60,11 +60,12 @@
 
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">商品管理</span><span
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">商品管理</span><span
                             class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/goodslist">商品列表</a>
                         </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/goodslist">商品评论</a></li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/add">添加商品</a>
                         </li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/type">商品分类</a>
@@ -79,11 +80,64 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/orderlist">订单列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/detail">发货单列表</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/shipping">发货单列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/type">退货单列表</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/cancel">退货单列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/brand">缺货登记</a>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">会员管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/member/memberlist">会员列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/shipping">添加会员</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/cancel">会员留言</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fa fa fa-bar-chart-o"></i>
+                        <span class="nav-label">报表统计</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="J_menuItem" href="graph_echarts.html">客户统计</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_flot.html">订单统计</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_morris.html">销售概况</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_rickshaw.html">销售排行</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_peity.html">会员排行</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_sparkline.html">Sparkline</a>
+                        </li>
+                        <li>
+                            <a class="J_menuItem" href="graph_metrics.html">图表组合</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">邮件短信管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/orderlist">邮件任务列表</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/shipping">邮件模板</a>
+                        </li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/cancel">结果分析</a>
                         </li>
                     </ul>
                 </li>

@@ -51,7 +51,7 @@
                                 <td><?php echo $item->level?></td>
                                 <td><?php echo $item->signup_time?></td>
                                 <td>
-                                    <a href="<?php echo base_url(); ?>index.php/order/detail/<?php echo $item->order_id ?>">
+                                    <a href="<?php echo base_url(); ?>index.php/order/member/detail">
                                         <i class="fa fa-check text-navy"></i> 查看详情</a></td>
                             </tr>
                             <?php

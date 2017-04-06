@@ -92,7 +92,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/member/memberlist">会员列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/shipping">添加会员</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/member/add">添加会员</a>
                         </li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/cancel">会员留言</a>
                         </li>

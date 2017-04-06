@@ -215,9 +215,6 @@
         var birthdayYear = $("#birthdayYear option:selected").val();
         var birthdayMonth = $("#birthdayMonth option:selected").val();
         var birthdayDay = $("#birthdayDay option:selected").val();
-        alert(birthdayYear);
-        alert(birthdayMonth);
-        alert(birthdayDay);
         var emailReg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
         if (!emailReg.test(email)) {
             alert('邮箱格式不正确，请重新输入');
@@ -239,7 +236,6 @@
             phone: phone,
             birthday: (new Date(birthdayYear, birthdayMonth, birthdayDay)).toISOString().substr(0, 19).replace('T', ' ')
         };
-        alert(data["birthday"]);
         $.post(url, data, function (rsps) {
             if (rsps.result) {
                 alert('添加成功');

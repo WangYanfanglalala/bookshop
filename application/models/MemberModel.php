@@ -22,6 +22,15 @@ class MemberModel extends BaseModel
         $data = $query->result();
         return $data;
     }
+
+    public function getMemberFeedback()
+    {
+        $query_string = "SELECT * FROM `tbl_feedback`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
     public function SelectMemberInformation($username)
     {
         $queryData = array('username' => $username);

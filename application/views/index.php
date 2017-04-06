@@ -94,7 +94,7 @@
                         </li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/member/add">添加会员</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/order/cancel">会员留言</a>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/member/feedback">会员留言</a>
                         </li>
                     </ul>
                 </li>

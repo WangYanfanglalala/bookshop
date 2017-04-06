@@ -65,7 +65,7 @@
                     <ul class="nav nav-second-level">
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/goodslist">商品列表</a>
                         </li>
-                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/goodslist">商品评论</a></li>
+                        <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/comment">商品评论</a></li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/add">添加商品</a>
                         </li>
                         <li><a class="J_menuItem" href="<?php echo base_url(); ?>index.php/product/type">商品分类</a>

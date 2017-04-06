@@ -22,27 +22,42 @@ class ProductModel extends BaseModel
         $data = $query->result();
         return $data;
     }
-   public function getProductFirstType(){
-       $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = 0;";
-       $query = $this->db->query($query_string);
-       $data = $query->result();
-       return $data;
-   }
-    public function getProductSecondType($id){
-        $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = ?;";
-        $query = $this->db->query($query_string,array($id));
-        $data = $query->result();
-        return $data;
-    }
-    public function getProductBrand(){
-        $query_string = "SELECT * FROM tbl_goods_brand";
+
+    public function getProductFirstType()
+    {
+        $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = 0;";
         $query = $this->db->query($query_string);
         $data = $query->result();
         return $data;
     }
+
+    public function getProductSecondType($id)
+    {
+        $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = ?;";
+        $query = $this->db->query($query_string, array($id));
+        $data = $query->result();
+        return $data;
+    }
+
+    public function getProductBrand()
+    {
+        $query_string = "SELECT * FROM `tbl_goods_brand`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
     public function insertGoodsInfomation($goods_data)
     {
         $model = new BaseModel('tbl_goods');
         return $model->insert($goods_data);
+    }
+
+    public function getCommentList()
+    {
+        $query_string = "SELECT * FROM `tbl_comment`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
     }
 }

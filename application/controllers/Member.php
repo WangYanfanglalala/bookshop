@@ -60,7 +60,7 @@ class Member extends BaseController
                 case 3:
                     $item->msg_type = '求购';
                     break;
-                case 5:
+                case 4:
                     $item->msg_type = '询问';
                     break;
                 default:

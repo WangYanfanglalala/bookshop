@@ -19,11 +19,11 @@ class Product extends BaseController
     public function add()
     {
         $data["goods_type"] = $this->ProductModel->getProductFirstType();
-        foreach($data["goods_type"] as $item){
+        foreach ($data["goods_type"] as $item) {
             $item->sub_type = $this->ProductModel->getProductSecondType($item->id);
         }
         $data["goods_brand"] = $this->ProductModel->getProductBrand();
-        $this->loadView('add_product',$data);
+        $this->loadView('add_product', $data);
     }
 
     public function addProduct()
@@ -42,20 +42,31 @@ class Product extends BaseController
             "sale_time" => $this->input->post('sale_time'),
             "add_time" => date('y-m-d h:i:s', time()),
             "goods_img" => $this->input->post('goods_img'),
-            "sale_date" =>$this->input->post('sale_date')
+            "sale_date" => $this->input->post('sale_date')
         );
         $result = $this->ProductModel->insertGoodsInfomation($data);
         $this->rspsJSON(true, '', $result);
     }
-    public function type(){
+
+    public function type()
+    {
         $data["goods_type"] = $this->ProductModel->getProductFirstType();
-        foreach($data["goods_type"] as $item){
+        foreach ($data["goods_type"] as $item) {
             $item->sub_type = $this->ProductModel->getProductSecondType($item->id);
         }
-        $this->load->view('product_type',$data);
+        $this->load->view('product_type', $data);
     }
-    public function brand(){
+
+    public function brand()
+    {
         $data["goods_brand"] = $this->ProductModel->getProductBrand();
-        $this->load->view('product_brand',$data);
+        $this->load->view('product_brand', $data);
+    }
+
+    public function comment()
+    {
+        $comment = $this->ProductModel->getCommentList();
+        $data["comment"] = $comment;
+        $this->load->view('comment_list', $data);
     }
 }

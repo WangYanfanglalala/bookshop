@@ -43,16 +43,22 @@
                             ?>
                             <tr class="gradeX">
                                 <td><?php echo $item->username ?></td>
-                                <td><?php echo $item->name?></td>
-                                <td><?php echo $item->email?></td>
-                                <td><?php echo $item->phone?></td>
-                                <td><?php echo $item->point_use?></td>
-                                <td><?php echo $item->point_balance?></td>
-                                <td><?php echo $item->level?></td>
-                                <td><?php echo $item->signup_time?></td>
+                                <td><?php echo $item->name ?></td>
+                                <td><?php echo $item->email ?></td>
+                                <td><?php echo $item->phone ?></td>
+                                <td><?php echo $item->point_use ?></td>
+                                <td><?php echo $item->point_balance ?></td>
+                                <td><?php echo $item->level ?></td>
+                                <td><?php echo $item->signup_time ?></td>
                                 <td>
-                                    <a href="<?php echo base_url(); ?>index.php/order/member/detail">
-                                        <i class="fa fa-check text-navy"></i> 查看详情</a></td>
+                                    <button class="btn btn-primary " type="button"><i class="fa fa-search"></i>&nbsp;查看
+                                    </button>
+                                    <button class="btn btn-info " type="button"><i class="fa fa-paste"></i> 编辑
+                                    </button>
+                                    <button class="btn btn-warning " type="button" onclick="removeMember(<?php echo $item->id?>)"><i class="fa fa-times"></i>
+                                        <span class="bold">删除</span>
+                                    </button>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -88,6 +94,21 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
+    function removeMember(memberId){
+        var url = '<?php echo base_url(); ?>index.php/member/deleteMember';
+        var data = {
+            memberId:memberId
+        };
+        $.post(url, data, function (rsps) {
+            if (rsps.result) {
+                alert('删除成功');
+                window.location.href = '<?php echo base_url()?>index.php/member/memberlist'
+            } else {
+                alert(rsps.msg);
+            }
+        }, 'json');
+
+    }
 </script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 

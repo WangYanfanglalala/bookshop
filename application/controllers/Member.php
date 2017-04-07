@@ -43,6 +43,13 @@ class Member extends BaseController
 
     }
 
+    public function deleteMember()
+    {
+        $memberId = $this->input->post('memberId');
+        $result = $this->MemberModel->deleteMemberById($memberId);
+        $this->rspsJSON(true, $result, '');
+    }
+
     public function feedback()
     {
         $feedback = $this->MemberModel->getMemberFeedback();

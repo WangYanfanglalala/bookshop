@@ -31,6 +31,15 @@ class MemberModel extends BaseModel
         return $data;
     }
 
+    public function deleteMemberById($memberId)
+    {
+        $where = array(
+            'id' => $memberId
+        );
+        $model = new BaseModel('tbl_member');
+        return $model->delete($where);
+    }
+
     public function SelectMemberInformation($username)
     {
         $queryData = array('username' => $username);

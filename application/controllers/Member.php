@@ -47,7 +47,7 @@ class Member extends BaseController
     {
         $memberId = $this->input->post('memberId');
         $result = $this->MemberModel->deleteMemberById($memberId);
-        $this->rspsJSON(true, '',$result);
+        $this->rspsJSON(true, '', $result);
     }
 
     public function feedback()
@@ -115,5 +115,21 @@ class Member extends BaseController
         } else {
             $this->rspsJSON(false, '密码错误', '');
         }
+    }
+
+    public function reply($msg_id)
+    {
+        $feedback = $this->MemberModel->getFeedbackInformation($msg_id);
+        $data["feedback"] = $feedback;
+        $this->loadView('reply_feedback', $data);
+
+    }
+
+    public function replyFeedback()
+    {
+        $msg_id = $this->input->post('msg_id');
+        $reply_content = $this->input->post('reply_content');
+        $result = $this->MemberModel->addReplyFeedback($msg_id, $reply_content);
+        $this->rspsJSON(true, '', $result);
     }
 }

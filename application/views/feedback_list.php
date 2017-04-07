@@ -49,7 +49,10 @@
                                 <td><?php echo $item->msg_time ?></td>
                                 <td><?php echo $item->msg_status ?></td>
                                 <td>
-                                    <button class="btn btn-info " type="button"><i class="fa fa-search"></i>&nbsp;查看详情
+                                    <button class="btn btn-info " type="button"
+                                            onclick="javascript:window.location.href='<?php echo base_url(); ?>index.php/member/reply/<?php echo $item->msg_id ?>'">
+                                        <i
+                                            class="fa fa-search"></i>&nbsp;查看详情
                                     </button>
                                     <button class="btn btn-danger " type="button"
                                             onclick="removeFeedback(<?php echo $item->msg_id ?>)"><i

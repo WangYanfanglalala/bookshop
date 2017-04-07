@@ -88,8 +88,7 @@ class MemberModel extends BaseModel
         return $model->update($memberData, $where);
     }
 
-    public
-    function insertMemberInformation($username = '', $name = '', $password = '', $phone = '', $email = '', $sex = 0, $birthday = '1970-01-01 00:00:00', $signup_time)
+    public function insertMemberInformation($username = '', $name = '', $password = '', $phone = '', $email = '', $sex = 0, $birthday = '1970-01-01 00:00:00', $signup_time)
     {
         $memberData = array(
             'username' => $username,
@@ -103,5 +102,24 @@ class MemberModel extends BaseModel
         );
         $model = new BaseModel('tbl_member');
         return $model->insert($memberData);
+    }
+
+    public function getFeedbackInformation($msg_id)
+    {
+        $queryData = array('msg_id' => $msg_id);
+        $model = new BaseModel('tbl_feedback');
+        return $model->getRow($field = "*", $queryData);
+    }
+
+    public function addReplyFeedback($msg_id, $reply_content)
+    {
+        $feedback = array(
+            'reply_content' => $reply_content
+        );
+        $where = array(
+            'msg_id' => $msg_id
+        );
+        $model = new BaseModel('tbl_feedback');
+        return $model->update($feedback, $where);
     }
 }

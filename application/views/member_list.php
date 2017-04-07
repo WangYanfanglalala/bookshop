@@ -51,11 +51,14 @@
                                 <td><?php echo $item->level ?></td>
                                 <td><?php echo $item->signup_time ?></td>
                                 <td>
-                                    <button class="btn btn-primary " type="button"><i class="fa fa-search"></i>&nbsp;查看
+                                    <button class="btn btn-info " type="button"><i class="fa fa-search"></i>&nbsp;查看
                                     </button>
-                                    <button class="btn btn-info " type="button"><i class="fa fa-paste"></i> 编辑
+                                    <button class="btn btn-warning "
+                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/member/edit/<?php echo $item->id ?>'"
+                                            type="button"><i class="fa fa-paste"></i> 编辑
                                     </button>
-                                    <button class="btn btn-warning " type="button" onclick="removeMember(<?php echo $item->id?>)"><i class="fa fa-times"></i>
+                                    <button class="btn btn-danger " type="button"
+                                            onclick="removeMember(<?php echo $item->id ?>)"><i class="fa fa-times"></i>
                                         <span class="bold">删除</span>
                                     </button>
                                 </td>
@@ -94,10 +97,10 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
-    function removeMember(memberId){
+    function removeMember(memberId) {
         var url = '<?php echo base_url(); ?>index.php/member/deleteMember';
         var data = {
-            memberId:memberId
+            memberId: memberId
         };
         $.post(url, data, function (rsps) {
             if (rsps.result) {

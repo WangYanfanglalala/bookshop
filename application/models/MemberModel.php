@@ -47,7 +47,40 @@ class MemberModel extends BaseModel
         return $model->getRow($field = "*", $queryData);
     }
 
-    public function insertMemberInformation($username = '', $name = '', $password = '', $phone = '', $email = '', $sex = 0, $birthday = '1970-01-01 00:00:00', $signup_time)
+    public function getMemberInformation($memberId)
+    {
+        $queryData = array('id' => $memberId);
+        $model = new BaseModel('tbl_member');
+        return $model->getRow($field = "*", $queryData);
+    }
+
+    public function verifyMemberPassword($memberId, $password)
+    {
+        $queryData = array('id' => $memberId,
+            'password' => $password);
+        $model = new BaseModel('tbl_member');
+        return $model->getRow($field = "*", $queryData);
+    }
+
+    public function modifyMemberInformation($memberId, $username = '', $name = '', $phone = '', $email = '', $sex = 0, $birthday = '1970-01-01 00:00:00')
+    {
+        $memberData = array(
+            'username' => $username,
+            'name' => $name,
+            'email' => $email,
+            'phone' => $phone,
+            'sex' => $sex,
+            'birthday' => $birthday
+        );
+        $where = array(
+            'id' => $memberId
+        );
+        $model = new BaseModel('tbl_member');
+        return $model->update($memberData, $where);
+    }
+
+    public
+    function insertMemberInformation($username = '', $name = '', $password = '', $phone = '', $email = '', $sex = 0, $birthday = '1970-01-01 00:00:00', $signup_time)
     {
         $memberData = array(
             'username' => $username,

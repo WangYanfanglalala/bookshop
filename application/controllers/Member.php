@@ -79,4 +79,34 @@ class Member extends BaseController
         $data["feedback"] = $feedback;
         $this->load->view('feedback_list', $data);
     }
+
+    public function edit($memberId)
+    {
+        $member = $this->MemberModel->getMemberInformation($memberId);
+        $member["birthdayYear"] = substr($member["birthday"], 0, 4);
+        $member["birthdayMonth"] = substr($member["birthday"], 5, 2);
+        $member["birthdayDay"] = substr($member["birthday"], 8, 2);
+        $data["member"] = $member;
+        $this->loadView('edit_member', $data);
+    }
+
+    public function editMember()
+    {
+        $memberId = $this->input->post('memberId');
+        $username = $this->input->post('username');
+        $name = $this->input->post('name');
+        $password = $this->input->post('password');
+        $phone = $this->input->post('phone');
+        $email = $this->input->post('email');
+        $sex = $this->input->post('sex');
+        $birthday = $this->input->post('birthday');
+        //检验该会员所输入的密码是否正确
+        $encryptedPassword = sha1($password);
+        if ($this->MemberModel->verifyMemberPassword($memberId, $encryptedPassword)) {
+            $data = $this->MemberModel->modifyMemberInformation($memberId, $username, $name, $phone, $email, $sex, $birthday);
+            $this->rspsJSON(true, '', $data);
+        } else {
+            $this->rspsJSON(false, '密码错误', '');
+        }
+    }
 }

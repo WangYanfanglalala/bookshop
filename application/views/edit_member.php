@@ -2,6 +2,7 @@
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
 </head>
+<?php print_r($member) ?>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
     <div class="row" style="background-color:#fff">
@@ -17,7 +18,7 @@
                                 <div class="col-sm-9">
                                     <input type="text" name="username" id="username"
                                            class="form-control"
-                                           placeholder="请输入会员名称" required="required">
+                                           value="<?php echo $member["username"] ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group draggable">
@@ -25,7 +26,7 @@
 
                                 <div class="col-sm-9">
                                     <input type="text" name="name" id="name" class="form-control"
-                                           placeholder="真实姓名" required="required">
+                                           value="<?php echo $member["name"] ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group draggable">
@@ -33,7 +34,7 @@
 
                                 <div class="col-sm-9">
                                     <input type="text" name="email" id="email" class="form-control"
-                                           placeholder="邮件地址" required="required">
+                                           value="<?php echo $member["email"] ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group draggable">
@@ -41,7 +42,7 @@
 
                                 <div class="col-sm-9">
                                     <input type="text" name="phone" id="phone" class="form-control"
-                                           placeholder="手机号码" required="required">
+                                           value="<?php echo $member["phone"] ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group draggable">
@@ -73,7 +74,8 @@
                                 <label class="col-sm-3 control-label">出生日期：</label>
 
                                 <div class="col-sm-9">
-                                    <select name="birthdayYear" id="birthdayYear">
+                                    <select name="birthdayYear" id="birthdayYear"
+                                            value="<?php echo $member["birthdayYear"] ?>">
                                         <option value="1957">1957</option>
                                         <option value="1958">1958</option>
                                         <option value="1959">1959</option>
@@ -137,7 +139,8 @@
                                         <option value="2017">2017</option>
                                         <option value="2018">2018</option>
                                     </select>&nbsp;
-                                    <select name="birthdayMonth" id="birthdayMonth">
+                                    <select name="birthdayMonth" id="birthdayMonth"
+                                            value="<?php echo $member["birthdayMonth"] ?>">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
@@ -151,7 +154,8 @@
                                         <option value="11">11</option>
                                         <option value="12">12</option>
                                     </select>&nbsp;
-                                    <select name="birthdayDay" id="birthdayDay">
+                                    <select name="birthdayDay" id="birthdayDay"
+                                            value="<?php echo $member["birthdayDay"] ?>">
                                         <option value="1">01</option>
                                         <option value="2">02</option>
                                         <option value="3">03</option>
@@ -188,8 +192,8 @@
                             </div>
                             <div class="form-group draggable">
                                 <div class="col-sm-12 col-sm-offset-3">
-                                    <button class="btn btn-primary" type="button" onclick="add_member()">
-                                        添加会员
+                                    <button class="btn btn-primary" type="button" onclick="edit_member()">
+                                        修改会员
                                     </button>
                                     <button class="btn btn-white" type="button">取消</button>
                                 </div>
@@ -204,7 +208,7 @@
     </div>
 </div>
 <script>
-    function add_member() {
+    function edit_member() {
         var username = document.getElementById("username").value;
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
@@ -226,25 +230,28 @@
             document.getElementById("password").focus();
             return false;
         }
-        var url = '<?php echo base_url(); ?>index.php/member/addMember';
+        var url = '<?php echo base_url(); ?>index.php/member/editMember';
         var data = {
-            username: username,
-            name: name,
-            password: password,
-            email: email,
-            sex: sex,
-            phone: phone,
-            birthday: (new Date(birthdayYear, birthdayMonth, birthdayDay)).toISOString().substr(0, 19).replace('T', ' ')
-        };
+                memberId: <?php echo $member["id"]?>,
+                username: username,
+                name: name,
+                password: password,
+                email: email,
+                sex: sex,
+                phone: phone,
+                birthday: (new Date(birthdayYear, birthdayMonth, birthdayDay)).toISOString().substr(0, 19).replace('T', ' ')
+            }
+            ;
         $.post(url, data, function (rsps) {
             if (rsps.result) {
-                alert('添加成功');
+                alert('修改成功');
                 window.location.href = '<?php echo base_url()?>index.php/member/memberlist'
             } else {
                 alert(rsps.msg);
             }
         }, 'json');
     }
+
 </script>
 
 </body>

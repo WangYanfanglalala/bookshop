@@ -49,8 +49,14 @@
                                 <td><?php echo $item->msg_time ?></td>
                                 <td><?php echo $item->msg_status ?></td>
                                 <td>
-                                    <a href="<?php echo base_url(); ?>index.php/order/member/detail">
-                                        <i class="fa fa-check text-navy"></i> 查看详情</a></td>
+                                    <button class="btn btn-info " type="button"><i class="fa fa-search"></i>&nbsp;查看详情
+                                    </button>
+                                    <button class="btn btn-danger " type="button"
+                                            onclick="removeFeedback(<?php echo $item->msg_id ?>)"><i
+                                            class="fa fa-times"></i>
+                                        <span class="bold">删除</span>
+                                    </button>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -86,6 +92,22 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
+</script>
+<script>
+    function removeFeedback(msgId) {
+        var url = '<?php echo base_url(); ?>index.php/member/deleteFeedback';
+        var data = {
+            msgId: msgId
+        };
+        $.post(url, data, function (rsps) {
+            if (rsps.result) {
+                alert('删除成功');
+                window.location.href = '<?php echo base_url()?>index.php/member/feedback'
+            } else {
+                alert(rsps.msg);
+            }
+        }, 'json');
+    }
 </script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 

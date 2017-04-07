@@ -47,7 +47,7 @@ class Member extends BaseController
     {
         $memberId = $this->input->post('memberId');
         $result = $this->MemberModel->deleteMemberById($memberId);
-        $this->rspsJSON(true, $result, '');
+        $this->rspsJSON(true, '',$result);
     }
 
     public function feedback()
@@ -88,6 +88,13 @@ class Member extends BaseController
         $member["birthdayDay"] = substr($member["birthday"], 8, 2);
         $data["member"] = $member;
         $this->loadView('edit_member', $data);
+    }
+
+    public function deleteFeedback()
+    {
+        $msg_id = $this->input->post('msgId');
+        $data = $this->MemberModel->deleteMemberFeedback($msg_id);
+        $this->rspsJSON(true, '', $data);
     }
 
     public function editMember()

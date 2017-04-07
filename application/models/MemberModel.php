@@ -40,6 +40,15 @@ class MemberModel extends BaseModel
         return $model->delete($where);
     }
 
+    public function deleteMemberFeedback($msg_id)
+    {
+        $where = array(
+            'msg_id' => $msg_id
+        );
+        $model = new BaseModel('tbl_feedback');
+        return $model->delete($where);
+    }
+
     public function SelectMemberInformation($username)
     {
         $queryData = array('username' => $username);

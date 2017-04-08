@@ -18,7 +18,6 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
@@ -57,11 +56,11 @@
                         ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <script src="<?php echo base_url(); ?>public/js/jquery.min.js?v=2.1.4"></script>
 <script src="<?php echo base_url(); ?>public/js/bootstrap.min.js?v=3.3.5"></script>
@@ -88,7 +87,7 @@
     ;
 </script>
 <script>
-    function removeProduct(goods_id){
+    function removeProduct(goods_id) {
         var url = '<?php echo base_url(); ?>index.php/product/delete';
         var data = {
             goods_id: goods_id

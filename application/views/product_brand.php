@@ -8,18 +8,26 @@
     <title>H+ 后台主题UI框架 - 数据表格</title>
     <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
     <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
-    <link rel="shortcut icon" href="<?php echo base_url();?>public/favicon.ico">
-    <link href="<?php echo base_url();?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>public/favicon.ico">
+    <link href="<?php echo base_url(); ?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
     <!-- Data Tables -->
-    <link href="<?php echo base_url();?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/animate.min.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/animate.min.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
     <base target="_blank">
 </head>
 
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <button class="btn btn-info " type="button" style="padding-right: 10%"
+                    onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/addBrand'"><i
+                    class="fa fa-plus"></i>&nbsp;增加品牌
+            </button>
+        </div>
+    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
@@ -38,7 +46,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        foreach($goods_brand as $item) {
+                        foreach ($goods_brand as $item) {
                             ?>
                             <tr class="gradeX">
                                 <td><?php echo $item->brand_name ?></td>
@@ -46,7 +54,17 @@
                                 <td><?php echo $item->website_url ?></td>
                                 <td class="center"><?php echo $item->brand_desc ?></td>
                                 <td class="center"><?php echo $item->sort_order ?></td>
-                                <td>查看，编辑</td>
+                                <td>
+                                    <button class="btn btn-warning "
+                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/editBrand/<?php echo $item->id ?>'"
+                                            type="button"><i class="fa fa-paste"></i> 编辑
+                                    </button>
+                                    <button class="btn btn-danger " type="button"
+                                            onclick="removeGoodsBrand(<?php echo $item->id ?>)"><i
+                                            class="fa fa-times"></i>
+                                        <span class="bold">删除</span>
+                                    </button>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -82,6 +100,20 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
+    function removeGoodsBrand(brand_id) {
+        var url = '<?php echo base_url(); ?>index.php/product/deleteBrand';
+        var data = {
+            brand_id:brand_id
+        };
+        $.post(url, data, function (rsps) {
+            if (rsps.result) {
+                alert('删除成功');
+                window.location.href = '<?php echo base_url()?>index.php/product/brand'
+            } else {
+                alert(rsps.msg);
+            }
+        }, 'json');
+    }
 </script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 

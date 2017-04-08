@@ -116,10 +116,72 @@ class Product extends BaseController
         $this->load->view('product_brand', $data);
     }
 
+    public function addBrand()
+    {
+        $this->loadView('add_product_brand');
+    }
+
+    public function addGoodsBrand()
+    {
+        $data = array(
+            'brand_name' => $this->input->post('brand_name'),
+            'website_url' => $this->input->post('website_url'),
+            'brand_logo' => $this->input->post('brand_logo'),
+            'brand_desc' => $this->input->post('brand_desc'),
+            'sort_order' => $this->input->post('sort_order')
+        );
+        $result = $this->ProductModel->insertProductBrand($data);
+        $this->rspsJSON(true, '', $result);
+    }
+
+    public function editBrand()
+    {
+        $brand_id = $this->input->post('brand_id');
+        $brand_info = $this->ProductModel->getBrandInformation($brand_id);
+        $data["brand_info"] = $brand_info;
+        $this->loadView('edit_product_brand', $data);
+    }
+
+    public function deleteBrand($brand_id)
+    {
+        $result = $this->ProductModel->deleteProductBrand($brand_id);
+        $this->rspsJSON(true, '', $result);
+    }
+
     public function comment()
     {
         $comment = $this->ProductModel->getCommentList();
+        foreach ($comment as $item) {
+            switch ($item->status) {
+                case 0:
+                    $item->status = '未确认';
+                    break;
+                case 1:
+                    $item->status = '处理中';
+                    break;
+                case 2:
+                    $item->status = '已处理';
+                    break;
+            }
+        }
         $data["comment"] = $comment;
         $this->load->view('comment_list', $data);
+    }
+
+    public function checkComment($comment_id)
+    {
+        $status = 2;
+        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $status);
+        $this->rspsJSON(true, '', $result);
+    }
+
+    /** 处理评论：处理评论的过程在线下进行，线上只标记该评论状态是在处理中
+     * @param $comment_id
+     */
+    public function dealComment($comment_id)
+    {
+        $status = 1;
+        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $status);
+        $this->rspsJSON(true, '', $result);
     }
 }

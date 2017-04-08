@@ -23,6 +23,15 @@ class ProductModel extends BaseModel
         return $data;
     }
 
+    public function getProductTnformationByGoodsId($goods_id)
+    {
+        $queryData = array(
+            'goods_id' => $goods_id
+        );
+        $model = new BaseModel('tbl_goods');
+        return $model->getRow($field = "*", $queryData);
+    }
+
     public function getProductFirstType()
     {
         $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = 0;";
@@ -51,6 +60,24 @@ class ProductModel extends BaseModel
     {
         $model = new BaseModel('tbl_goods');
         return $model->insert($goods_data);
+    }
+
+    public function updateGoodsInformation($goods_data, $goods_id)
+    {
+        $model = new BaseModel('tbl_goods');
+        $where = array(
+            'goods_id' => $goods_id
+        );
+        return $model->update($goods_data, $where);
+    }
+
+    public function deleteGoodsByGoodsId($goods_id)
+    {
+        $where = array(
+            'goods_id' => $goods_id
+        );
+        $model = new BaseModel('tbl_goods');
+        return $model->delete($where);
     }
 
     public function getCommentList()

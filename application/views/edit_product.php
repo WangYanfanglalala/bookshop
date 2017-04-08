@@ -2,6 +2,7 @@
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
 </head>
+<?php print_r($goods_info) ?>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
     <div class="row" style="background-color:#fff">
@@ -26,7 +27,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_name" id="goods_name"
                                                        class="form-control"
-                                                       placeholder="请输入商品名称">
+                                                       value="<?php echo $goods_info["goods_name"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -34,8 +35,7 @@
 
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_sn" id="goods_sn" class="form-control"
-                                                       placeholder="请输入商品货号">
-                                                <span class="help-block m-b-none">如果您不输入商品货号，系统将会为您生成一个唯一的商品货号</span>
+                                                       value="<?php echo $goods_info["goods_sn"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -76,7 +76,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="market_price" id="market_price"
                                                        class="form-control"
-                                                       placeholder="请输入市场售价">
+                                                       value="<?php echo $goods_info["market_price"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -85,7 +85,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="shop_price" id="shop_price"
                                                        class="form-control"
-                                                       placeholder="请输入本店售卖价格">
+                                                       value="<?php echo $goods_info["shop_price"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -94,7 +94,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="promote_price" id="promote_price"
                                                        class="form-control"
-                                                       placeholder="请输入商品促销价">
+                                                       value="<?php echo $goods_info["promote_price"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable" id="data_5">
@@ -103,11 +103,11 @@
                                             <div class="input-daterange input-group col-sm-9" id="datepicker">
                                                 <input type="text" class="input-sm form-control" name="start"
                                                        id="promote_start_date"
-                                                       value="2017-03-27"/>
+                                                       value="<?php echo substr($goods_info["promote_start_date"], 0, 10) ?>"/>
                                                 <span class="input-group-addon">到</span>
                                                 <input type="text" class="input-sm form-control" name="end"
                                                        id="promote_end_date"
-                                                       value="2017-03-29"/>
+                                                       value="<?php echo substr($goods_info["promote_end_date"], 0, 10) ?>"/>
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -115,7 +115,7 @@
 
                                             <div class="col-sm-9">
                                                 <input type="text" name="add_point" id="add_point" class="form-control"
-                                                       placeholder="赠送消费积分数">
+                                                       value="<?php echo $goods_info["add_point"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -124,7 +124,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="consume_point" id="consume_point"
                                                        class="form-control"
-                                                       placeholder="积分可以抵扣的金额">
+                                                       value="<?php echo $goods_info["consume_point"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -140,7 +140,7 @@
                                             <div class="input-group date col-sm-9">
                                                 <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                 <input type="text" class="form-control" name="sale_date" id="sale_date"
-                                                       value="2017-03-27">
+                                                       value="<?php echo substr($goods_info["sale_date"], 0, 10) ?>">
                                             </div>
                                         </div>
                                     </form>
@@ -160,7 +160,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_length" id="goods_length"
                                                        class="form-control"
-                                                       placeholder="请输入商品长度">
+                                                       value="<?php echo $goods_info["goods_length"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -169,7 +169,16 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_width" id="goods_width"
                                                        class="form-control"
-                                                       placeholder="请输入商品宽度">
+                                                       value="<?php echo $goods_info["goods_width"] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group draggable">
+                                            <label class="col-sm-3 control-label">商品高度：</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="goods_height" id="goods_height"
+                                                       class="form-control"
+                                                       value="<?php echo $goods_info["goods_height"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -178,7 +187,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_weight" id="goods_weight"
                                                        class="form-control"
-                                                       placeholder="请输入商品重量">
+                                                       value="<?php echo $goods_info["goods_weight"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -187,7 +196,7 @@
                                             <div class="col-sm-9">
                                                 <input type="text" name="goods_brief" id="goods_brief"
                                                        class="form-control"
-                                                       placeholder="请输入商品简单描述">
+                                                       value="<?php echo $goods_info["goods_brief"] ?>">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -195,7 +204,7 @@
 
                                             <div class="col-sm-9">
                                                 <textarea name="goods_desc" id="goods_desc" class="form-control"
-                                                          style="height: 200px">
+                                                          style="height: 200px"><?php echo $goods_info["goods_desc"] ?>
                                                  </textarea>
                                             </div>
                                         </div>
@@ -211,8 +220,8 @@
             </div>
             <div style="height: 160px;padding-top: 40px;padding-bottom: 40px">
                 <div class="col-sm-12 col-sm-offset-3">
-                    <button class="btn btn-primary" type="button" onclick="add_product()">
-                        添加商品
+                    <button class="btn btn-primary" type="button" onclick="edit_product()">
+                        修改商品信息
                     </button>
                     <button class="btn btn-white" type="button">取消</button>
                 </div>
@@ -223,7 +232,7 @@
 </div>
 </body>
 <script type="text/javascript">
-    function add_product() {
+    function edit_product() {
         var goods_name = document.getElementById('goods_name').value;
         var goods_sn = document.getElementById('goods_sn').value;
         var goods_type = $("#goods_type option:selected").val();
@@ -239,11 +248,12 @@
         var sale_date = document.getElementById('sale_date').value;
         var goods_length = document.getElementById('goods_length').value;
         var goods_width = document.getElementById('goods_width').value;
-        var goods_weight = document.getElementById('goods_weight').value;
         var goods_height = document.getElementById('goods_height').value;
+        var goods_weight = document.getElementById('goods_weight').value;
         var goods_brief = document.getElementById('goods_brief').value;
         var goods_desc = document.getElementById('goods_desc').value;
         var data = {
+            goods_id:<?php echo $goods_info["goods_id"]?>,
             goods_name: goods_name,
             goods_sn: goods_sn,
             goods_type: goods_type,
@@ -259,15 +269,15 @@
             sale_date: sale_date,
             goods_length: goods_length,
             goods_width: goods_width,
-            goods_height: goods_height,
+            goods_height:goods_height,
             goods_weight: goods_weight,
             goods_brief: goods_brief,
             goods_desc: goods_desc
         };
-        var url = '<?php echo base_url()?>index.php/product/addProduct';
+        var url = '<?php echo base_url()?>index.php/product/editProduct';
         $.post(url, data, function (rsps) {
             if (rsps.result) {
-                alert('添加成功');
+                alert('修改成功');
                 console.log(rsps);
                 window.location.href = '<?php echo base_url()?>index.php/product/goodslist'
             } else {

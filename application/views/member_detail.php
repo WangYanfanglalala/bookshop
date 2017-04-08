@@ -1,16 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>H+ 后台主题UI框架 - 数据表格</title>
-    <meta name="keywords" content="H+后台主题,后台bootstrap框架,会员中心主题,后台HTML,响应式后台">
-    <meta name="description" content="H+是一个完全响应式，基于Bootstrap3最新版本开发的扁平化主题，她采用了主流的左右两栏式布局，使用了Html5+CSS3等现代技术">
     <link rel="shortcut icon" href="<?php echo base_url(); ?>public/favicon.ico">
     <link href="<?php echo base_url(); ?>public/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <!-- Data Tables -->
     <link href="<?php echo base_url(); ?>public/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/animate.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/style.min.css?v=4.0.0" rel="stylesheet">
@@ -22,38 +15,67 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
                     <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <h3><strong>订单列表</strong></h3>
                         <thead>
                         <tr>
                             <th>订单号</th>
-                            <th>用户名,下单时间</th>
-                            <th>收货人，收货地址</th>
-                            <th>购买产品</th>
+                            <th>下单时间</th>
+                            <th>收货人</th>
                             <th>总金额</th>
+                            <th>应付金额</th>
                             <th>订单状态</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($data as $item) {
+                        foreach ($order as $item) {
                             ?>
                             <tr class="gradeX">
-                                <td name="order_id"><?php echo $item->order_id ?></td>
-                                <td><?php echo $item->user_id . '  ' . $item->create_time ?></td>
+                                <td><?php echo $item->order_id ?></td>
+                                <td><?php echo $item->create_time ?></td>
+                                <td><?php echo $item->receive_man ?></td>
+                                <td><?php echo $item->money_total ?></td>
+                                <td><?php echo $item->money_paid ?></td>
+                                <td><?php echo $item->order_status . ' ' . $item->shipping_status . ' ' . $item->pay_status ?></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                        </tbody>
+                    </table>
+                    <table class="table table-striped table-bordered table-hover dataTables-example">
+                        <h3><strong>收货地址列表</strong></h3>
+                        <thead>
+                        <tr>
+                            <th>收货人</th>
+                            <th>收货地址</th>
+                            <th>联系方式</th>
+                            <th>其他</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <?php
+                        foreach ($address as $item) {
+                            ?>
+                            <tr class="gradeX">
+                                <td><?php echo $item->consignee ?></td>
                                 <td>
-                                    <p><?php echo $item->receive_man ?></p>
+                                    <p><?php echo $item->country . ' ' . $item->province . ' ' . $item->city . ' ' . $item->district ?></p>
 
-                                    <p><?php echo $item->country . ' ' . $item->province . ' ' . $item->city . ' ' . $item->distinct . ' ' . $item->address ?></p>
+                                    <p><?php echo $item->address ?></p>
                                 </td>
-                                <td class="center"><?php echo $item->goods_amount ?></td>
-                                <td class="center"><?php echo $item->money_paid ?></td>
                                 <td>
-                                    <button class="btn btn-info " type="button"
-                                            onclick="javascript:window.location.href='<?php echo base_url(); ?>index.php/order/detail/<?php echo $item->order_id ?>'">
-                                        <i
-                                            class="fa fa-search"></i>&nbsp;查看详情
-                                    </button>
+                                    <p><?php echo $item->tel ?></p>
+
+                                    <p><?php echo $item->mobile ?></p>
+
+                                    <p><?php echo $item->email ?></p>
+                                </td>
+                                <td>
+                                    <p>标志性建筑物：<?php echo $item->sign_building ?></p>
+
+                                    <p>最佳送货时间：<?php echo $item->best_time ?></p>
                                 </td>
                             </tr>
                             <?php
@@ -61,7 +83,6 @@
                         ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>

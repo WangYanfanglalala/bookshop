@@ -64,4 +64,12 @@ class OrderModel extends BaseModel
         $data = $query->result();
         return $data;
     }
+
+    public function getUserOrderByUserId($user_id)
+    {
+        $query_string = "SELECT * FROM `tbl_order` WHERE `user_id` = " . $user_id;
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
 }

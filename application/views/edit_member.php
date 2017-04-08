@@ -2,7 +2,6 @@
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>public/css/plugins/summernote/summernote-bs3.css" rel="stylesheet">
 </head>
-<?php print_r($member) ?>
 <body class="gray-bg">
 <div class="wrapper wrapper-content">
     <div class="row" style="background-color:#fff">

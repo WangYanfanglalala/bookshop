@@ -7,6 +7,7 @@ class Member extends BaseController
         parent::__construct();
         $this->load->helper("url");
         $this->load->model("MemberModel");
+        $this->load->model('OrderModel');
     }
 
     public function memberlist()
@@ -52,6 +53,7 @@ class Member extends BaseController
 
     public function feedback()
     {
+        date_default_timezone_set('PRC');
         $feedback = $this->MemberModel->getMemberFeedback();
         foreach ($feedback as $item) {
             switch ($item->msg_type) {
@@ -131,5 +133,24 @@ class Member extends BaseController
         $reply_content = $this->input->post('reply_content');
         $result = $this->MemberModel->addReplyFeedback($msg_id, $reply_content);
         $this->rspsJSON(true, '', $result);
+    }
+
+    public function detail($user_id)
+    {
+        $address = $this->MemberModel->getUserAddress($user_id);
+        foreach ($address as $item) {
+            $country = $this->OrderModel->getRegionName($item->country);
+            $province = $this->OrderModel->getRegionName($item->province);
+            $city = $this->OrderModel->getRegionName($item->city);
+            $district = $this->OrderModel->getRegionName($item->district);
+            $item->country = $country["region_name"];
+            $item->province = $province["region_name"];
+            $item->city = $city["region_name"];
+            $item->district = $district["region_name"];
+        }
+        $order = $this->OrderModel->getUserOrderByUserId($user_id);
+        $data["address"] = $address;
+        $data["order"] = $order;
+        $this->load->view('member_detail', $data);
     }
 }

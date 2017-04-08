@@ -122,4 +122,12 @@ class MemberModel extends BaseModel
         $model = new BaseModel('tbl_feedback');
         return $model->update($feedback, $where);
     }
+
+    public function getUserAddress($user_id)
+    {
+        $query_string = "SELECT * FROM `tbl_member_address` WHERE `user_id` = " . $user_id;
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
 }

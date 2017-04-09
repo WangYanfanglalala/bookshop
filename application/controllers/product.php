@@ -134,17 +134,32 @@ class Product extends BaseController
         $this->rspsJSON(true, '', $result);
     }
 
-    public function editBrand()
+    public function editBrand($brand_id)
     {
-        $brand_id = $this->input->post('brand_id');
         $brand_info = $this->ProductModel->getBrandInformation($brand_id);
         $data["brand_info"] = $brand_info;
         $this->loadView('edit_product_brand', $data);
     }
 
+    public function editGoodsBrand()
+    {
+        $brand_info = array(
+            'brand_name' => $this->input->post('brand_name'),
+            'website_url' => $this->input->post('website_url'),
+            'brand_logo' => $this->input->post('brand_logo'),
+            'brand_desc' => $this->input->post('brand_desc'),
+            'sort_order' => $this->input->post('sort_order')
+        );
+        $brand_id = $this->input->post('sort_order');
+        $result = $this->ProductModel->updateBrandInformation($brand_id, $brand_info);
+        $this->rspsJSON(true, '', $result);
+    }
+
     public function deleteBrand($brand_id)
     {
         $result = $this->ProductModel->deleteProductBrand($brand_id);
+        alert('删除成功');
+
         $this->rspsJSON(true, '', $result);
     }
 
@@ -160,7 +175,7 @@ class Product extends BaseController
                     $item->status = '处理中';
                     break;
                 case 2:
-                    $item->status = '已处理';
+                    $item->status = '已确认';
                     break;
             }
         }
@@ -168,20 +183,26 @@ class Product extends BaseController
         $this->load->view('comment_list', $data);
     }
 
-    public function checkComment($comment_id)
+    public function checkComment()
     {
-        $status = 2;
-        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $status);
+        $commentStatus = array(
+            'status' => 2
+        );
+        $comment_id = $this->input->post('comment_id');
+        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $commentStatus);
         $this->rspsJSON(true, '', $result);
     }
 
     /** 处理评论：处理评论的过程在线下进行，线上只标记该评论状态是在处理中
      * @param $comment_id
      */
-    public function dealComment($comment_id)
+    public function dealComment()
     {
-        $status = 1;
-        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $status);
+        $commentStatus = array(
+            'status' => 1
+        );
+        $comment_id = $this->input->post('comment_id');
+        $result = $this->ProductModel->UpdateCommentStatus($comment_id, $commentStatus);
         $this->rspsJSON(true, '', $result);
     }
 }

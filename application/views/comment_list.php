@@ -17,7 +17,6 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
@@ -46,12 +45,12 @@
                                 <td>
                                     <button class="btn btn-info " type="button"
                                             onclick="checkComment(<?php echo $item->comment_id ?>)"><i
-                                            class="fa fa-check"></i>&nbsp;查看
+                                            class="fa fa-check"></i>&nbsp;确认
                                     </button>
                                     <button class="btn btn-danger " type="button"
                                             onclick="dealComment(<?php echo $item->comment_id ?>)"><i
                                             class="fa fa-edit"></i>
-                                        <span class="bold">删除</span>
+                                        <span class="bold">处理</span>
                                     </button>
                                 </td>
                             </tr>
@@ -60,11 +59,11 @@
                         ?>
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 <script src="<?php echo base_url(); ?>public/js/jquery.min.js?v=2.1.4"></script>
 <script src="<?php echo base_url(); ?>public/js/bootstrap.min.js?v=3.3.5"></script>
@@ -89,9 +88,11 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
-    function checkComment(commentId) {
+</script>
+<script>
+    function checkComment(comment_id) {
         var data = {
-            commentId: commentId
+            comment_id: comment_id
         };
         var url = '<?php echo base_url()?>index.php/product/checkComment';
         $.post(url, data, function (rsps) {
@@ -102,9 +103,9 @@
             }
         }, 'json');
     }
-    function dealComment(commentId) {
+    function dealComment(comment_id) {
         var data = {
-            commentId: commentId
+            comment_id: comment_id
         };
         var url = '<?php echo base_url()?>index.php/product/dealComment';
         $.post(url, data, function (rsps) {

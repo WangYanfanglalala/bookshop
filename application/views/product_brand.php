@@ -60,7 +60,8 @@
                                             type="button"><i class="fa fa-paste"></i> 编辑
                                     </button>
                                     <button class="btn btn-danger " type="button"
-                                            onclick="removeGoodsBrand(<?php echo $item->id ?>)"><i
+                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/deleteBrand/<?php echo $item->id ?>'">
+                                        <i
                                             class="fa fa-times"></i>
                                         <span class="bold">删除</span>
                                     </button>
@@ -103,7 +104,7 @@
     function removeGoodsBrand(brand_id) {
         var url = '<?php echo base_url(); ?>index.php/product/deleteBrand';
         var data = {
-            brand_id:brand_id
+            brand_id: brand_id
         };
         $.post(url, data, function (rsps) {
             if (rsps.result) {

@@ -40,8 +40,8 @@
                                 <label class="col-sm-3 control-label">品牌描述：</label>
 
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" name="brand_desc" id="brand_desc"
-                                              value="<?php echo $brand_info["brand_desc"] ?>">
+                                    <textarea class="form-control" name="brand_desc"
+                                              id="brand_desc"><?php echo $brand_info["brand_desc"] ?>
                                     </textarea>
                                 </div>
                             </div>
@@ -50,13 +50,14 @@
 
                                 <div class="col-sm-9">
                                     <input type="text" name="sort_order" id="sort_order" class="form-control"
-                                           required="required">
+                                           value="<?php echo $brand_info["sort_order"] ?>" required="required">
                                 </div>
                             </div>
                             <div class="form-group draggable">
                                 <div class="col-sm-12 col-sm-offset-3">
-                                    <button class="btn btn-primary" type="button" onclick="add_product_brand()">
-                                        添加品牌
+                                    <button class="btn btn-primary" type="button"
+                                            onclick="edit_product_brand(<?php echo $brand_info["id"] ?>)">
+                                        修改品牌信息
                                     </button>
                                     <button class="btn btn-white" type="button">取消</button>
                                 </div>
@@ -71,14 +72,15 @@
     </div>
 </div>
 <script>
-    function add_product_brand() {
+    function edit_product_brand(brand_id) {
         var brand_name = document.getElementById('brand_name').value;
         var website_url = document.getElementById('website_url').value;
         var brand_logo = document.getElementById('brand_logo').value;
         var brand_desc = document.getElementById('brand_desc').value;
         var sort_order = document.getElementById('sort_order').value;
-        url = '<?php echo base_url(); ?>index.php/product/addGoodsBrand';
+        url = '<?php echo base_url(); ?>index.php/product/editGoodsBrand';
         var data = {
+            brand_id: brand_id,
             brand_name: brand_name,
             website_url: website_url,
             brand_logo: brand_logo,
@@ -87,7 +89,7 @@
         };
         $.post(url, data, function (rsps) {
             if (rsps.result) {
-                alert('添加成功');
+                alert('修改成功');
                 window.location.href = '<?php echo base_url()?>index.php/product/brand'
             } else {
                 alert(rsps.msg);

@@ -65,6 +65,15 @@ class ProductModel extends BaseModel
         return $model->getRow($field = "*", $queryData);
     }
 
+    public function updateBrandInformation($brand_id, $brand_info)
+    {
+        $where = array(
+            'id' => $brand_id
+        );
+        $model = new BaseModel('tbl_goods_brand');
+        return $model->update($brand_info, $where);
+    }
+
     public function insertProductBrand($data)
     {
         $model = new BaseModel('tbl_goods_brand');
@@ -112,11 +121,8 @@ class ProductModel extends BaseModel
         return $data;
     }
 
-    public function UpdateCommentStatus($comment_id, $status)
+    public function UpdateCommentStatus($comment_id, $updateData)
     {
-        $updateData = array(
-            'status' => $status
-        );
         $where = array(
             'comment_id' => $comment_id
         );

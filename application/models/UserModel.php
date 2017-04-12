@@ -22,19 +22,53 @@ class UserModel extends BaseModel
      * @param string $password
      * @return mixed
      */
-    public function InsertUserInformation($username = '', $name = '', $email = '', $password = '')
+    public function InsertUserInformation($adminData)
     {
-        $userData = array('username' => $username,
-            'name' => $name,
-            'email' => $email,
-            'password' => $password
+        $model = new BaseModel('tbl_user');
+        return $model->insert($adminData);
+    }
+
+    public function getAdminList()
+    {
+        $query_string = "SELECT * FROM `tbl_user`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
+    public function getAdminLoginLog($admin_id)
+    {
+        $query_string = "SELECT * FROM tbl_loginlog WHERE  `admin_user_admin_user_id` = ".$admin_id;
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
+
+    public function getUserIdByUsername($username)
+    {
+        $queryData = array(
+            'username' => $username
         );
         $model = new BaseModel('tbl_user');
-        return $model->insert($userData);
+        return $model->getRow($field = 'id', $queryData);
     }
-    public function SelectUserInformation($username)
+
+    /** 保存管理员登录日志到'tbl_loginLog'表中
+     * @param $data 要插入放入数据
+     * @return int
+     */
+    public function addUserLog($data)
     {
-        $queryData = array('username' => $username);
+        $model = new BaseModel('tbl_loginLog');
+        return $model->insert($data);
+    }
+
+    public function SelectUserInformation($username, $password)
+    {
+        $queryData = array(
+            'username' => $username,
+            'password' => $password
+        );
         $model = new BaseModel('tbl_user');
         return $model->getRow($field = "*", $queryData);
     }

@@ -36,26 +36,16 @@
                                 <td><?php echo $order_detail["create_time"] ?></td>
                             </tr>
                             <tr>
-                                <th class="text-nowrap">支付方式</th>
-                                <td><?php echo $order_detail["pay_type"] ?></td>
                                 <th class="text-nowrap">付款时间</th>
                                 <td><?php echo $order_detail["pay_time"] ?></td>
-                            </tr>
-                            <tr>
-                                <th class="text-nowrap">配送方式</th>
-                                <td><?php echo $order_detail["shipping_name"] ?></td>
-                                <th class="text-nowrap">发货时间</th>
-                                <td><?php echo $order_detail["shipping_time"] ?></td>
-                            </tr>
-                            <tr>
-                                <th class="text-nowrap">发货单号</th>
-                                <td><?php echo $order_detail["shipping_id"] ?></td>
-                                <th class="text-nowrap">订单来源</th>
-                                <td><?php echo $order_detail["source_name"] ?></td>
-                            </tr>
-                            <tr>
                                 <th class="text-nowrap">买家留言</th>
                                 <td><?php echo $order_detail["customer_memo"] ?></td>
+                            </tr>
+                            <tr>
+                                <th class="text-nowrap">发货时间</th>
+                                <td><?php echo $order_detail["shipping_time"] ?></td>
+                                <th class="text-nowrap">配送方式</th>
+                                <td><?php echo $order_detail["shipping_name"] ?></td>
                             </tr>
                             </tbody>
                         </table>
@@ -114,7 +104,6 @@
                             <th>清单</th>
                             <th>数量</th>
                             <th>单价</th>
-                            <th>税率</th>
                             <th>总价</th>
                         </tr>
                         </thead>
@@ -129,7 +118,6 @@
                                 </td>
                                 <td><?php echo $item->goods_number ?></td>
                                 <td>&yen;<?php echo $item->goods_price ?></td>
-                                <td>&yen;<?php echo $item->tax_fee ?></td>
                                 <td>&yen;<?php echo $item->goods_total_price ?></td>
                             </tr>
                             <?php
@@ -145,27 +133,22 @@
                     <tr>
                         <td><strong>总价：</strong>
                         </td>
-                        <td>&yen;<?php echo $order_detail["money_total"]?></td>
-                    </tr>
-                    <tr>
-                        <td><strong>税：</strong>
-                        </td>
-                        <td>&yen;<?php echo $order_detail["tax_fee"]?></td>
+                        <td>&yen;<?php echo $order_detail["money_total"] ?></td>
                     </tr>
                     <tr>
                         <td><strong>快递费：</strong>
                         </td>
-                        <td>&yen;<?php echo $order_detail["shipping_fee"]?></td>
+                        <td>&yen;<?php echo $order_detail["shipping_fee"] ?></td>
                     </tr>
                     <tr>
                         <td><strong>积分抵扣：</strong>
                         </td>
-                        <td>&yen;<?php echo $order_detail["point_consume"]?></td>
+                        <td>&yen;<?php echo $order_detail["point_consume"] ?></td>
                     </tr>
                     <tr>
                         <td><strong>总计</strong>
                         </td>
-                        <td>&yen;<?php echo $order_detail["money_paid"]?></td>
+                        <td>&yen;<?php echo $order_detail["money_paid"] ?></td>
                     </tr>
                     </tbody>
                 </table>

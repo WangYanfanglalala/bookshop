@@ -16,7 +16,7 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="favicon.ico">
-    <script src="<?php echo base_url(); ?>public/js/content.min.js?v=1.0.0"></script>
+    <script src="http://localhost/bookshop/public/js/content.min.js?v=1.0.0"></script>
     <script src="<?php echo base_url(); ?>public/js/plugins/staps/jquery.steps.min.js"></script>
     <script src="<?php echo base_url(); ?>public/js/plugins/validate/jquery.validate.min.js"></script>
     <script src="<?php echo base_url(); ?>public/js/plugins/validate/messages_zh.min.js"></script>

@@ -32,17 +32,6 @@ class Order extends BaseController
         $order_detail["order_status"] = $order_detail["order_status"]?"已确认":"未确认";
         $order_detail["shipping_status"] = $order_detail["shipping_status"]?"已发货":"未发货";
         $order_detail["pay_status"] = $order_detail["pay_status"]?"已付款":"未付款";
-        switch($order_detail["pay_type"]){
-            case 1:
-                $order_detail["pay_type"] = "现金支付";
-                break;
-            case 2:
-                $order_detail["pay_type"] = "支付宝支付";
-                break;
-            case 3:
-                $order_detail["pay_type"] = "微信支付";
-                break;
-        }
         $data["order_detail"] = $order_detail;
         $data["order_product"] = $order_product;
         $this->load->view('order_detail',$data);

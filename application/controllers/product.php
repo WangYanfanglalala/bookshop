@@ -6,7 +6,22 @@ class Product extends BaseController
     {
         parent::__construct();
         $this->load->helper("url");
+        $this->load->helper('form');
         $this->load->model("ProductModel");
+    }
+
+    public function upload()
+    {
+        $config['upload_path'] = './uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 100;
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload('userfile ')) {
+            $error = array($this->upload->display_errors());
+            $this->load->view('add_product', $error);
+        }
+        $data["test"] = '111111';
+        $this->load->view('add_product', $data);
     }
 
     public function goodslist()
@@ -49,15 +64,11 @@ class Product extends BaseController
     {
         date_default_timezone_set('PRC');
         $data = array(
-            "goods_sn" => $this->input->post('goods_sn'),
             "goods_name" => $this->input->post('goods_name'),
             "goods_type" => $this->input->post('goods_type'),
             "goods_brand" => $this->input->post('goods_brand'),
-            "promote_start_date" => $this->input->post('promote_start_date'),
-            "promote_end_date" => $this->input->post('promote_end_date'),
             "market_price" => $this->input->post('market_price'),
             "shop_price" => $this->input->post('shop_price'),
-            "promote_price" => $this->input->post('promote_price'),
             "add_time" => date('y-m-d h:i:s', time()),
             "goods_img" => $this->input->post('goods_img'),
             "sale_date" => $this->input->post('sale_date'),
@@ -80,11 +91,7 @@ class Product extends BaseController
             "goods_name" => $this->input->post('goods_name'),
             "goods_type" => $this->input->post('goods_type'),
             "goods_brand" => $this->input->post('goods_brand'),
-            "promote_start_date" => $this->input->post('promote_start_date'),
-            "promote_end_date" => $this->input->post('promote_end_date'),
-            "market_price" => $this->input->post('market_price'),
             "shop_price" => $this->input->post('shop_price'),
-            "promote_price" => $this->input->post('promote_price'),
             "goods_img" => $this->input->post('goods_img'),
             "sale_date" => $this->input->post('sale_date'),
             "add_point" => $this->input->post('add_point'),
@@ -103,10 +110,16 @@ class Product extends BaseController
 
     public function type()
     {
-        $data["goods_type"] = $this->ProductModel->getProductFirstType();
-        foreach ($data["goods_type"] as $item) {
-            $item->sub_type = $this->ProductModel->getProductSecondType($item->id);
+        $goods_type = $this->ProductModel->getProductType();
+        foreach ($goods_type as $item) {
+            $item->parent_name = $this->ProductModel->getProductParentTypeName($item->parent_id);
+            $item->parent_name = $item->parent_name ? $item->parent_name : '顶级分类';
         }
+        $data["goods_type_tree"] = $this->ProductModel->getProductFirstType();
+        foreach ($data["goods_type_tree"] as $row) {
+            $row->sub_type = $this->ProductModel->getProductSecondType($row->id);
+        }
+        $data["goods_type"] = $goods_type;
         $this->load->view('product_type', $data);
     }
 

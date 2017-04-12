@@ -20,42 +20,21 @@
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
-                            <th>用户名</th>
-                            <th>姓名</th>
-                            <th>邮件地址</th>
-                            <th>手机号码</th>
-                            <th>消费积分</th>
-                            <th>积分余额</th>
-                            <th>注册时间</th>
-                            <th>操作</th>
+                            <th>编号</th>
+                            <th>登录地址</th>
+                            <th>登录ip</th>
+                            <th>登录时间</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($member as $item) {
+                        foreach ($admin_log as $item) {
                             ?>
                             <tr class="gradeX">
-                                <td><?php echo $item->username ?></td>
-                                <td><?php echo $item->name ?></td>
-                                <td><?php echo $item->email ?></td>
-                                <td><?php echo $item->phone ?></td>
-                                <td><?php echo $item->point_use ?></td>
-                                <td><?php echo $item->point_balance ?></td>
-                                <td><?php echo $item->signup_time ?></td>
-                                <td>
-                                    <button class="btn btn-info " type="button"
-                                            onclick="javasrcipt:window.location.href = '<?php echo base_url();?>index.php/member/detail/<?php echo $item->id?>'"><i
-                                            class="fa fa-search"></i>&nbsp;查看
-                                    </button>
-                                    <button class="btn btn-warning "
-                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/member/edit/<?php echo $item->id ?>'"
-                                            type="button"><i class="fa fa-paste"></i> 编辑
-                                    </button>
-                                    <button class="btn btn-danger " type="button"
-                                            onclick="removeMember(<?php echo $item->id ?>)"><i class="fa fa-times"></i>
-                                        <span class="bold">删除</span>
-                                    </button>
-                                </td>
+                                <td><?php echo $item->loginLog_id ?></td>
+                                <td><?php echo $item->loginLog_address ?></td>
+                                <td><?php echo $item->loginLog_IP ?></td>
+                                <td><?php echo $item->loginLog_time ?></td>
                             </tr>
                             <?php
                         }
@@ -91,21 +70,6 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
-    function removeMember(memberId) {
-        var url = '<?php echo base_url(); ?>index.php/member/deleteMember';
-        var data = {
-            memberId: memberId
-        };
-        $.post(url, data, function (rsps) {
-            if (rsps.result) {
-                alert('删除成功');
-                window.location.href = '<?php echo base_url()?>index.php/member/memberlist'
-            } else {
-                alert(rsps.msg);
-            }
-        }, 'json');
-
-    }
 </script>
 <script type="text/javascript" src="http://tajs.qq.com/stats?sId=9051096" charset="UTF-8"></script>
 

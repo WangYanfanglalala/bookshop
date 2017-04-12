@@ -76,7 +76,7 @@ class Member extends BaseController
                     $item->msg_type = '留言';
             }
             $item->msg_status = $item->msg_status ? '未回复' : '已回复';
-            $item->msg_time = date('y-m-d h:i:s', $item->msg_time);
+            $item->msg_time = date('y-m-d h:i:s', (int)($item->msg_time));
         }
         $data["feedback"] = $feedback;
         $this->load->view('feedback_list', $data);

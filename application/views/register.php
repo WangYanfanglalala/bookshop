@@ -48,38 +48,6 @@
 </body>
 </html>
 <script type="text/javascript">
-    function signup() {
-        var username = document.getElementById("username").value;
-        var name = document.getElementById("name").value;
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
-        var passwordAgain = document.getElementById("passwordAgain").value;
-        var emailReg = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
-        if (!emailReg.test(email)) {
-            alert('邮箱格式不正确，请重新输入');
-            document.getElementById("email").focus();
-            return false;
-        }
-        if (password != passwordAgain) {
-            alert('两次密码输入不一致');
-            document.getElementById("password").focus();
-            return false;
-        }
-        var url = '<?php echo base_url(); ?>index.php/welcome/userRegister';
-        var data = {
-            username: username,
-            name: name,
-            password: password,
-            email: email
-        };
-        $.post(url, data, function (rsps) {
-            if (rsps.result) {
-                alert('注册成功');
-                window.location.href = '<?php echo base_url()?>index.php/welcome/login'
-            } else {
-                alert(rsps.msg);
-            }
-        }, 'json');
-    }
+
 
 </script>

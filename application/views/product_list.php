@@ -23,7 +23,6 @@
                         <tr>
                             <th>编号</th>
                             <th>商品名称</th>
-                            <th>货号</th>
                             <th>价格</th>
                             <th>上架时间</th>
                             <th>操作</th>
@@ -36,7 +35,6 @@
                             <tr class="gradeX">
                                 <td><?php echo $item->goods_id ?></td>
                                 <td><?php echo $item->goods_name ?></td>
-                                <td><?php echo $item->goods_sn ?></td>
                                 <td class="center"><?php echo $item->shop_price ?></td>
                                 <td class="center"><?php echo $item->sale_date ?></td>
                                 <td>

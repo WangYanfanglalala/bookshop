@@ -30,15 +30,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
-                                            <label class="col-sm-3 control-label">商品货号：</label>
-
-                                            <div class="col-sm-9">
-                                                <input type="text" name="goods_sn" id="goods_sn" class="form-control"
-                                                       placeholder="请输入商品货号">
-                                                <span class="help-block m-b-none">如果您不输入商品货号，系统将会为您生成一个唯一的商品货号</span>
-                                            </div>
-                                        </div>
-                                        <div class="form-group draggable">
                                             <label class="col-sm-3 control-label">商品分类</label>
 
                                             <div class="col-sm-9">
@@ -89,28 +80,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
-                                            <label class="col-sm-3 control-label">促销价：</label>
-
-                                            <div class="col-sm-9">
-                                                <input type="text" name="promote_price" id="promote_price"
-                                                       class="form-control"
-                                                       placeholder="请输入商品促销价">
-                                            </div>
-                                        </div>
-                                        <div class="form-group draggable" id="data_5">
-                                            <label class="col-sm-3 control-label">促销日期</label>
-
-                                            <div class="input-daterange input-group col-sm-9" id="datepicker">
-                                                <input type="text" class="input-sm form-control" name="start"
-                                                       id="promote_start_date"
-                                                       value="2017-03-27"/>
-                                                <span class="input-group-addon">到</span>
-                                                <input type="text" class="input-sm form-control" name="end"
-                                                       id="promote_end_date"
-                                                       value="2017-03-29"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group draggable">
                                             <label class="col-sm-3 control-label">赠送消费积分数：</label>
 
                                             <div class="col-sm-9">
@@ -131,7 +100,8 @@
                                             <label class="col-sm-3 control-label">上传商品图片：</label>
 
                                             <div class="col-sm-9">
-                                                <input type="file" name="goods_img" id="goods_img" class="form-control">
+                                                <input type="file" name="goods_img" id="goods_img"
+                                                       class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group draggable" id="data_1">
@@ -170,6 +140,15 @@
                                                 <input type="text" name="goods_width" id="goods_width"
                                                        class="form-control"
                                                        placeholder="请输入商品宽度">
+                                            </div>
+                                        </div>
+                                        <div class="form-group draggable">
+                                            <label class="col-sm-3 control-label">商品厚度：</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="goods_height" id="goods_height"
+                                                       class="form-control"
+                                                       placeholder="请输入商品厚度">
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
@@ -225,14 +204,10 @@
 <script type="text/javascript">
     function add_product() {
         var goods_name = document.getElementById('goods_name').value;
-        var goods_sn = document.getElementById('goods_sn').value;
         var goods_type = $("#goods_type option:selected").val();
         var goods_brand = $("#goods_brand option:selected").val();
         var market_price = document.getElementById('market_price').value;
         var shop_price = document.getElementById('shop_price').value;
-        var promote_price = document.getElementById('promote_price').value;
-        var promote_start_date = document.getElementById('promote_start_date').value;
-        var promote_end_date = document.getElementById('promote_end_date').value;
         var add_point = document.getElementById('add_point').value;
         var consume_point = document.getElementById('consume_point').value;
         var goods_img = document.getElementById('goods_img').value;
@@ -245,14 +220,10 @@
         var goods_desc = document.getElementById('goods_desc').value;
         var data = {
             goods_name: goods_name,
-            goods_sn: goods_sn,
             goods_type: goods_type,
             goods_brand: goods_brand,
             market_price: market_price,
             shop_price: shop_price,
-            promote_price: promote_price,
-            promote_start_date: promote_start_date,
-            promote_end_date: promote_end_date,
             add_point: add_point,
             consume_point: consume_point,
             goods_img: goods_img,

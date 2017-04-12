@@ -32,6 +32,13 @@ class ProductModel extends BaseModel
         return $model->getRow($field = "*", $queryData);
     }
 
+    public function getProductType()
+    {
+        $query_string = "SELECT * FROM `tbl_goods_type`";
+        $query = $this->db->query($query_string);
+        $data = $query->result();
+        return $data;
+    }
     public function getProductFirstType()
     {
         $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = 0;";
@@ -39,13 +46,21 @@ class ProductModel extends BaseModel
         $data = $query->result();
         return $data;
     }
-
     public function getProductSecondType($id)
     {
         $query_string = "SELECT * FROM `tbl_goods_type` WHERE `parent_id` = ?;";
         $query = $this->db->query($query_string, array($id));
         $data = $query->result();
         return $data;
+    }
+    public function getProductParentTypeName($parent_id)
+    {
+        $queryData = array(
+            'id' => $parent_id
+        );
+        $model = new BaseModel('tbl_goods_type');
+        $result = $model->getRow($field = "*", $queryData);
+        return $result["type_name"];
     }
 
     public function getProductBrand()

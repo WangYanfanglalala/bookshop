@@ -80,6 +80,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
+                                            <label class="col-sm-3 control-label">库存：</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="stock" id="stock"
+                                                       class="form-control"
+                                                       value="<?php echo $goods_info["stock"] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-group draggable">
                                             <label class="col-sm-3 control-label">赠送消费积分数：</label>
 
                                             <div class="col-sm-9">
@@ -207,6 +216,7 @@
         var goods_brand = $("#goods_brand option:selected").val();
         var market_price = document.getElementById('market_price').value;
         var shop_price = document.getElementById('shop_price').value;
+        var stock = document.getElementById('stock').value;
         var add_point = document.getElementById('add_point').value;
         var consume_point = document.getElementById('consume_point').value;
         var goods_img = document.getElementById('goods_img').value;
@@ -223,6 +233,7 @@
             goods_type: goods_type,
             goods_brand: goods_brand,
             market_price: market_price,
+            stock: stock,
             shop_price: shop_price,
             add_point: add_point,
             consume_point: consume_point,
@@ -230,7 +241,7 @@
             sale_date: sale_date,
             goods_length: goods_length,
             goods_width: goods_width,
-            goods_height:goods_height,
+            goods_height: goods_height,
             goods_weight: goods_weight,
             goods_brief: goods_brief,
             goods_desc: goods_desc

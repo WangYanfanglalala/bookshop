@@ -80,6 +80,15 @@
                                             </div>
                                         </div>
                                         <div class="form-group draggable">
+                                            <label class="col-sm-3 control-label">库存：</label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" name="stock" id="stock"
+                                                       class="form-control"
+                                                       placeholder="请输入库存">
+                                            </div>
+                                        </div>
+                                        <div class="form-group draggable">
                                             <label class="col-sm-3 control-label">赠送消费积分数：</label>
 
                                             <div class="col-sm-9">
@@ -193,7 +202,6 @@
                     <button class="btn btn-primary" type="button" onclick="add_product()">
                         添加商品
                     </button>
-                    <button class="btn btn-white" type="button">取消</button>
                 </div>
             </div>
         </div>
@@ -208,6 +216,7 @@
         var goods_brand = $("#goods_brand option:selected").val();
         var market_price = document.getElementById('market_price').value;
         var shop_price = document.getElementById('shop_price').value;
+        var stock = document.getElementById('stock').value;
         var add_point = document.getElementById('add_point').value;
         var consume_point = document.getElementById('consume_point').value;
         var goods_img = document.getElementById('goods_img').value;
@@ -224,6 +233,7 @@
             goods_brand: goods_brand,
             market_price: market_price,
             shop_price: shop_price,
+            stock: stock,
             add_point: add_point,
             consume_point: consume_point,
             goods_img: goods_img,

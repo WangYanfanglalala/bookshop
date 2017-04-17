@@ -7,10 +7,9 @@
     <div>
         <div>
 
-            <h1 class="logo-name">H+</h1>
+            <h2>后台管理系统</h2>
 
         </div>
-        <h3>欢迎使用 H+</h3>
 
         <form class="m-t" role="form">
             <div class="form-group">

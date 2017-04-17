@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-sm-12">
             <button class="btn btn-info " type="button" style="padding-right: 10%"
-                    onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/addBrand'"><i
+                    onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/addGoodsType'"><i
                     class="fa fa-plus"></i>&nbsp;增加分类
             </button>
         </div>
@@ -76,7 +76,7 @@
                             <th>分类编号</th>
                             <th>分类名称</th>
                             <th>分类描述</th>
-                            <th>分类层级</th>
+                            <th>所属分类</th>
                             <th>操作</th>
                         </tr>
                         </thead>
@@ -91,11 +91,11 @@
                                 <td class="center"><?php echo $item->parent_name ?></td>
                                 <td>
                                     <button class="btn btn-warning "
-                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/editBrand/<?php echo $item->id ?>'"
+                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/editType/<?php echo $item->id ?>'"
                                             type="button"><i class="fa fa-paste"></i> 编辑
                                     </button>
                                     <button class="btn btn-danger " type="button"
-                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/deleteBrand/<?php echo $item->id ?>'">
+                                            onclick="removeGoodsType(<?php echo $item->id?>)">
                                         <i
                                             class="fa fa-times"></i>
                                         <span class="bold">删除</span>
@@ -162,15 +162,18 @@
         $("#editable").dataTable().fnAddData(["Custom row", "New row", "New row", "New row", "New row"])
     }
     ;
-    function removeGoodsBrand(brand_id) {
-        var url = '<?php echo base_url(); ?>index.php/product/deleteBrand';
+    function removeGoodsType(type_id) {
+        if(!confirm('你确定要删除吗?')){
+            return false;
+        }
+        var url = '<?php echo base_url(); ?>index.php/product/deleteType';
         var data = {
-            brand_id: brand_id
+            type_id: type_id
         };
         $.post(url, data, function (rsps) {
             if (rsps.result) {
                 alert('删除成功');
-                window.location.href = '<?php echo base_url()?>index.php/product/brand'
+                window.location.href = '<?php echo base_url()?>index.php/product/type'
             } else {
                 alert(rsps.msg);
             }

@@ -24,11 +24,22 @@ class Product extends BaseController
         $this->load->view('add_product', $data);
     }
 
-    public function goodslist()
+    public function goodslist($goods_name = '', $min_price = 0, $goods_type_input = 0, $max_price = 0, $goods_brand = '')
     {
-        $data = $this->ProductModel->getProductList();
-        $results["data"] = $data;
-        $this->load->view('product_list', $results);
+        $goods_type = $this->ProductModel->getProductAllSecondType();
+        $data["goods_type"] = $goods_type;
+        $data["goods_brand"] = $this->ProductModel->getProductBrand();
+        $search = array(
+            'goods_name' => empty($goods_name) ? $goods_name : urldecode($goods_name),
+            'min_price' => $min_price,
+            'max_price' => $max_price,
+            'goods_type' => empty($goods_type_input) ? $goods_type_input : urldecode($goods_type_input),
+            'goods_brand' => empty($goods_brand) ? $goods_brand : urldecode($goods_brand)
+        );
+        $goods_list = $this->ProductModel->getProductList($search);
+        $data["goods_list"] = $goods_list;
+        $data["search"] = $search;
+        $this->load->view('product_list', $data);
     }
 
     public function add()
@@ -69,6 +80,7 @@ class Product extends BaseController
             "goods_brand" => $this->input->post('goods_brand'),
             "market_price" => $this->input->post('market_price'),
             "shop_price" => $this->input->post('shop_price'),
+            "stock" => $this->input->post('stock'),
             "add_time" => date('y-m-d h:i:s', time()),
             "goods_img" => $this->input->post('goods_img'),
             "sale_date" => $this->input->post('sale_date'),
@@ -87,11 +99,11 @@ class Product extends BaseController
     public function editProduct()
     {
         $data = array(
-            "goods_sn" => $this->input->post('goods_sn'),
             "goods_name" => $this->input->post('goods_name'),
             "goods_type" => $this->input->post('goods_type'),
             "goods_brand" => $this->input->post('goods_brand'),
             "shop_price" => $this->input->post('shop_price'),
+            "stock" => $this->input->post('stock'),
             "goods_img" => $this->input->post('goods_img'),
             "sale_date" => $this->input->post('sale_date'),
             "add_point" => $this->input->post('add_point'),
@@ -121,6 +133,54 @@ class Product extends BaseController
         }
         $data["goods_type"] = $goods_type;
         $this->load->view('product_type', $data);
+    }
+
+    public function addGoodsType()
+    {
+        $goods_type = $this->ProductModel->getProductAllSecondType();
+        $data["goods_type"] = $goods_type;
+        $this->loadView('add_product_type', $data);
+    }
+
+    public function addProductType()
+    {
+        $goods_type = array(
+            'type_name' => $this->input->post('type_name'),
+            'describe' => $this->input->post('describe'),
+            'parent_id' => $this->input->post('parent_id')
+        );
+        $result = $this->ProductModel->AddProductType($goods_type);
+        return $this->rspsJSON(true, '', $result);
+    }
+
+    public function editType($type_id)
+    {
+        $type_info = $this->ProductModel->getTypeInfoByTypeId($type_id);
+        $type_info["parent_name"] = $this->ProductModel->getProductParentTypeName($type_info["parent_id"]);
+        $type_info["parent_name"] = $type_info["parent_name"] ? $type_info["parent_name"] : '顶级分类';
+        $data["type_info"] = $type_info;
+        $goods_type = $this->ProductModel->getProductAllSecondType();
+        $data["goods_type"] = $goods_type;
+        $this->loadView('edit_product_type', $data);
+    }
+
+    public function editGoodsType()
+    {
+        $type_id = $this->input->post('type_id');
+        $type_info = array(
+            'type_name' => $this->input->post('type_name'),
+            'describe' => $this->input->post('describe'),
+            'parent_id' => $this->input->post('parent_id')
+        );
+        $result = $this->ProductModel->updateGoodsType($type_id, $type_info);
+        return $this->rspsJSON(true, '', $result);
+    }
+
+    public function deleteType()
+    {
+        $type_id = $this->input->post('type_id');
+        $result = $this->ProductModel->deleteGoodsType($type_id);
+        return $this->rspsJSON(true, '', $result);
     }
 
     public function brand()
@@ -168,26 +228,31 @@ class Product extends BaseController
         $this->rspsJSON(true, '', $result);
     }
 
-    public function deleteBrand($brand_id)
+    public function deleteBrand()
     {
+        $brand_id = $this->input->post('brand_id');
         $result = $this->ProductModel->deleteProductBrand($brand_id);
-        alert('删除成功');
-
         $this->rspsJSON(true, '', $result);
     }
 
-    public function comment()
+    public function comment($username = '', $comment_goods = '', $status = 0, $comment_rank = 0)
     {
-        $comment = $this->ProductModel->getCommentList();
+        $search_data = array(
+            'username' => empty($username) ? $username : urldecode($username),
+            'comment_goods' => empty($comment_goods) ? $comment_goods : urldecode($comment_goods),
+            'status' => $status,
+            'comment_rank' => $comment_rank
+        );
+        $comment = $this->ProductModel->getCommentList($search_data);
         foreach ($comment as $item) {
             switch ($item->status) {
-                case 0:
+                case 1:
                     $item->status = '未确认';
                     break;
-                case 1:
+                case 2:
                     $item->status = '处理中';
                     break;
-                case 2:
+                case 3:
                     $item->status = '已确认';
                     break;
             }

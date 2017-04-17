@@ -31,24 +31,34 @@ class Welcome extends BaseController
         $this->loadView('index');
     }
 
-    public function index2()
+    public function profile()
     {
-        $this->loadView('index_v2');
+        $admin_log = $this->UserModel->getAdminLoginLog($_SESSION["admin_user_id"]);
+        $admin_info = $this->UserModel->getAdminInfoByUserId($_SESSION["admin_user_id"]);
+        switch($admin_info["sex"]){
+            case 0:
+                $admin_info["sex"] = '保密';
+                break;
+            case 1:
+                $admin_info["sex"] = '男';
+                break;
+            case 2:
+                $admin_info["sex"] = '女';
+                break;
+        }
+        $data["admin_log"] = $admin_log;
+        $data["admin_info"] = $admin_info;
+        $this->load->view('person_center', $data);
+    }
+
+    public function indexstat()
+    {
+        $this->loadView('index_stat');
     }
 
     public function index3()
     {
         $this->loadView('index_v3');
-    }
-
-    public function index4()
-    {
-        $this->loadView('index_v4');
-    }
-
-    public function index5()
-    {
-        $this->loadView('index_v5');
     }
 
     public function login()
@@ -59,6 +69,41 @@ class Welcome extends BaseController
     public function signup()
     {
         $this->loadView('add_admin');
+    }
+
+    public function resetpassword()
+    {
+        $this->loadView('reset_password');
+    }
+
+    public function changePassword()
+    {
+        if (!$_POST["old_password"]) {
+            $this->rspsJSON(false, '原密码不能为空', '');
+            return false;
+        }
+        if (sha1($_POST["old_password"]) != $this->UserModel->getUserPasswordByUserId($_SESSION["admin_user_id"])) {
+            $this->rspsJSON(false, '原密码不正确', '');
+            return false;
+        }
+        if (!$_POST["new_password"]) {
+            $this->rspsJSON(false, '新密码不能为空', '');
+            return false;
+        }
+        if (!$_POST["new_password_again"]) {
+            $this->rspsJSON(false, '确认密码不能为空', '');
+            return false;
+        }//判断两次输入密码是否一致
+        if ($_POST["new_password"] != $_POST["new_password_again"]) {
+            $this->rspsJSON(false, '两次输入密码不一致', '');
+            return false;
+        }
+        if ($_POST["old_password"] == $_POST["new_password"]) {
+            $this->rspsJSON(false, '新密码和旧密码不能一样');
+            return false;
+        }
+        $result = $this->UserModel->resetPassword($_SESSION["admin_user_id"], sha1($_POST["new_password"]));
+        return $this->rspsJSON(true, '', $result);
     }
 
     public function adminlist()
@@ -77,16 +122,18 @@ class Welcome extends BaseController
 
     public function userRegister()
     {
+        date_default_timezone_set('PRC');
         $registerData = array(
             'username' => $this->input->post("username"),
             'name' => $this->input->post('name'),
             'password' => $this->input->post('password'),
             'email' => $this->input->post('email'),
             'phone' => $this->input->post('phone'),
-            'sex' => $this->input->post('sex')
+            'sex' => $this->input->post('sex'),
+            'add_time' => date('Y-m-d H:i:s', time())
         );
         //查询用户名是否已经存在
-        if ($this->UserModel->SelectUserInformation($registerData["username"])) {
+        if ($this->UserModel->checkUserInformation($registerData["username"])) {
             $this->rspsJSON(false, '用户名已存在', '');
         } else {
             //插入用户信息到tbl_user表中

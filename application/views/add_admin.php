@@ -75,7 +75,6 @@
                                     <button class="btn btn-primary" type="button" onclick="add_admin()">
                                         添加管理员
                                     </button>
-                                    <button class="btn btn-white" type="button">取消</button>
                                 </div>
                             </div>
                         </form>
@@ -88,7 +87,7 @@
     </div>
 </div>
 <script>
-    function signup() {
+    function add_admin() {
         var username = document.getElementById("username").value;
         var name = document.getElementById("name").value;
         var email = document.getElementById("email").value;
@@ -119,7 +118,7 @@
         $.post(url, data, function (rsps) {
             if (rsps.result) {
                 alert('管理员添加成功');
-                window.location.href = '<?php echo base_url()?>index.php/welcome/login'
+                window.location.href = '<?php echo base_url()?>index.php/welcome/adminlist'
             } else {
                 alert(rsps.msg);
             }

@@ -21,6 +21,38 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>搜索条件</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        <label>用户名：</label><input type="text" id="username_input">
+                        <label>留言状态：</label>
+                        <select name="feedback_status_input" id="feedback_status_input" style="width: 100px">
+                            <option value="0">请选择</option>
+                            <option value="1">未回复</option>
+                            <option value="2">已回复</option>
+                        </select>
+                        <label>留言类型：</label>
+                        <select name="feedback_type_input" id="feedback_type_input" style="width: 100px">
+                            <option value="0">请选择</option>
+                            <option value="1">投诉</option>
+                            <option value="2">售后</option>
+                            <option value="3">求购</option>
+                            <option value="4">询问</option>
+                            <option value="5">留言</option>
+                        </select>
+                        <button type="button" class="btn btn-w-m btn-primary" onclick="search_feedback()">
+                            <i class=" fa fa-search"></i>搜索
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
                 <div class="ibox-content">
 
                     <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -79,6 +111,17 @@
 <script src="<?php echo base_url(); ?>public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>public/js/content.min.js?v=1.0.0"></script>
 <script>
+    function search_feedback() {
+        var feedback_data = {
+            username: document.getElementById('username_input').value ? document.getElementById('username_input').value : 0,
+            feedback_status: $("#feedback_status_input option:selected").val() ? $("#feedback_status_input option:selected").val() : 0,
+            feedback_type: $("#feedback_type_input option:selected").val() ? $("#feedback_type_input option:selected").val() : 0
+        }
+        window.location.href = "<?php echo base_url();?>index.php/member/feedback/" +
+            feedback_data.username + "/" + feedback_data.feedback_status + "/" + feedback_data.feedback_type
+    }
+</script>
+<script>
     $(document).ready(function () {
         $(".dataTables-example").dataTable();
         var oTable = $("#editable").dataTable();
@@ -98,6 +141,9 @@
 </script>
 <script>
     function removeFeedback(msgId) {
+        if (!confirm('你确定要删除吗?')) {
+            return false;
+        }
         var url = '<?php echo base_url(); ?>index.php/member/deleteFeedback';
         var data = {
             msgId: msgId

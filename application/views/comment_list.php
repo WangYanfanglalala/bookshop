@@ -16,6 +16,40 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>搜索条件</h5>
+                </div>
+                <div class="ibox-content">
+                    <p>
+                        <label>用户名：</label><input type="text" id="username_input">
+                        <label>评论状态：</label>
+                        <select name="comment_status" id="comment_status_input" style="width: 100px">
+                            <option value="0">请选择</option>
+                            <option value="1">未确认</option>
+                            <option value="2">处理中</option>
+                            <option value="3">已确认</option>
+                        </select>
+                        <label>评论星级：</label>
+                        <select name="comment_rank_input" id="comment_rank_input" style="width: 100px">
+                            <option value="0">请选择</option>
+                            <option value="1">一星级</option>
+                            <option value="2">二星级</option>
+                            <option value="3">三星级</option>
+                            <option value="4">四星级</option>
+                            <option value="5">五星级</option>
+                        </select>
+                        <label>购买产品：</label><input type="text" id="product_name_input">
+                        <button type="button" class="btn btn-w-m btn-primary" onclick="search_product_type()">
+                            <i class=" fa fa-search"></i>搜索
+                        </button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
                 <div class="ibox-content">
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
@@ -71,6 +105,18 @@
 <script src="<?php echo base_url(); ?>public/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="<?php echo base_url(); ?>public/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="<?php echo base_url(); ?>public/js/content.min.js?v=1.0.0"></script>
+<script>
+    function search_product_type() {
+        var search_data = {
+            username: document.getElementById('username_input').value ? document.getElementById('username_input').value : 0,
+            comment_goods: document.getElementById('product_name_input').value ? document.getElementById('product_name_input').value : 0,
+            status: $("#comment_status_input option:selected").val() ? $("#comment_status_input option:selected").val() : 0,
+            comment_rank: $("#comment_rank_input option:selected").val() ? $("#comment_rank_input option:selected").val() : 0
+        }
+        window.location.href = '<?php echo base_url();?>index.php/product/comment/'
+            + search_data.username + "/" + search_data.comment_goods + "/" + search_data.status + "/" + search_data.comment_rank;
+    }
+</script>
 <script>
     $(document).ready(function () {
         $(".dataTables-example").dataTable();

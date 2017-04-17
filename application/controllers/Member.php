@@ -22,6 +22,13 @@ class Member extends BaseController
         $this->loadView('add_member');
     }
 
+    public function resetPassword()
+    {
+        $member_id = $this->input->post('member_id');
+        $result = $this->MemberModel->updateMemberPassword($member_id);
+        return $this->rspsJSON(true, '', $result);
+    }
+
     public function addMember()
     {
         $username = $this->input->post('username');
@@ -44,22 +51,25 @@ class Member extends BaseController
 
     }
 
-    public function deleteMember()
-    {
-        $memberId = $this->input->post('memberId');
-        $result = $this->MemberModel->deleteMemberById($memberId);
-        $this->rspsJSON(true, '', $result);
-    }
+    /*
+        public function deleteMember()
+        {
+            $memberId = $this->input->post('memberId');
+            $result = $this->MemberModel->deleteMemberById($memberId);
+            $this->rspsJSON(true, '', $result);
+        }*/
 
-    public function feedback()
+    public function feedback($username = "", $feedback_status = 0, $feedback_type = 0)
     {
         date_default_timezone_set('PRC');
-        $feedback = $this->MemberModel->getMemberFeedback();
+        $search_feedback = array(
+            'username' => $username ? $username : urldecode($username),
+            'feedback_status' => $feedback_status,
+            'feedback_type' => $feedback_type
+        );
+        $feedback = $this->MemberModel->getMemberFeedback($search_feedback);
         foreach ($feedback as $item) {
             switch ($item->msg_type) {
-                case 0:
-                    $item->msg_type = '留言';
-                    break;
                 case 1:
                     $item->msg_type = '投诉';
                     break;
@@ -75,22 +85,29 @@ class Member extends BaseController
                 default:
                     $item->msg_type = '留言';
             }
-            $item->msg_status = $item->msg_status ? '未回复' : '已回复';
-            $item->msg_time = date('y-m-d h:i:s', (int)($item->msg_time));
+            switch ($item->msg_status) {
+                case 1:
+                    $item->msg_status = '未回复';
+                    break;
+                case 2:
+                    $item->msg_status = '已回复';
+                    break;
+            }
         }
         $data["feedback"] = $feedback;
         $this->load->view('feedback_list', $data);
     }
 
-    public function edit($memberId)
-    {
-        $member = $this->MemberModel->getMemberInformation($memberId);
-        $member["birthdayYear"] = substr($member["birthday"], 0, 4);
-        $member["birthdayMonth"] = substr($member["birthday"], 5, 2);
-        $member["birthdayDay"] = substr($member["birthday"], 8, 2);
-        $data["member"] = $member;
-        $this->loadView('edit_member', $data);
-    }
+    /*
+        public function edit($memberId)
+        {
+            $member = $this->MemberModel->getMemberInformation($memberId);
+            $member["birthdayYear"] = substr($member["birthday"], 0, 4);
+            $member["birthdayMonth"] = substr($member["birthday"], 5, 2);
+            $member["birthdayDay"] = substr($member["birthday"], 8, 2);
+            $data["member"] = $member;
+            $this->loadView('edit_member', $data);
+        }*/
 
     public function deleteFeedback()
     {

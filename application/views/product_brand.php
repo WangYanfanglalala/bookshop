@@ -60,7 +60,7 @@
                                             type="button"><i class="fa fa-paste"></i> 编辑
                                     </button>
                                     <button class="btn btn-danger " type="button"
-                                            onclick="javascript:window.location.href = '<?php echo base_url(); ?>index.php/product/deleteBrand/<?php echo $item->id ?>'">
+                                            onclick="removeGoodsBrand(<?php echo $item->id ?>)">
                                         <i
                                             class="fa fa-times"></i>
                                         <span class="bold">删除</span>
@@ -102,6 +102,9 @@
     }
     ;
     function removeGoodsBrand(brand_id) {
+        if(!confirm('你确定要删除吗?')){
+            return false;
+        }
         var url = '<?php echo base_url(); ?>index.php/product/deleteBrand';
         var data = {
             brand_id: brand_id

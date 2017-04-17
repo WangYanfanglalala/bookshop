@@ -23,10 +23,20 @@ class MemberModel extends BaseModel
         return $data;
     }
 
-    public function getMemberFeedback()
+    public function getMemberFeedback($feedback_search = array())
     {
-        $query_string = "SELECT * FROM `tbl_feedback`";
-        $query = $this->db->query($query_string);
+        $this->db->select('*');
+        $this->db->from('tbl_feedback');
+        if (isset($feedback_search["username"]) && !empty($feedback_search["username"])) {
+            $this->db->like('user_name', $feedback_search["username"]);
+        }
+        if (isset($feedback_search["feedback_status"]) && !empty($feedback_search["feedback_status"])) {
+            $this->db->where('msg_status', $feedback_search["feedback_status"]);
+        }
+        if (isset($feedback_search["feedback_type"]) && !empty($feedback_search["feedback_type"])) {
+            $this->db->where('msg_type', $feedback_search["feedback_type"]);
+        }
+        $query = $this->db->get();
         $data = $query->result();
         return $data;
     }
@@ -47,6 +57,18 @@ class MemberModel extends BaseModel
         );
         $model = new BaseModel('tbl_feedback');
         return $model->delete($where);
+    }
+
+    public function updateMemberPassword($member_id)
+    {
+        $where = array(
+            'id' => $member_id
+        );
+        $updateData = array(
+            'password' => sha1('111111')
+        );
+        $model = new BaseModel('tbl_member');
+        return $model->update($updateData, $where);
     }
 
     public function SelectMemberInformation($username)

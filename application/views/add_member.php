@@ -191,7 +191,6 @@
                                     <button class="btn btn-primary" type="button" onclick="add_member()">
                                         添加会员
                                     </button>
-                                    <button class="btn btn-white" type="button">取消</button>
                                 </div>
                             </div>
                         </form>

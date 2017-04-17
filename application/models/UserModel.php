@@ -36,9 +36,18 @@ class UserModel extends BaseModel
         return $data;
     }
 
+    public function getAdminInfoByUserId($user_id)
+    {
+        $queryData = array(
+            'id' => $user_id
+        );
+        $model = new BaseModel('tbl_user');
+        return $model->getRow($field = "*", $queryData);
+    }
+
     public function getAdminLoginLog($admin_id)
     {
-        $query_string = "SELECT * FROM tbl_loginlog WHERE  `admin_user_admin_user_id` = ".$admin_id;
+        $query_string = "SELECT * FROM tbl_loginlog WHERE  `admin_user_admin_user_id` = " . $admin_id;
         $query = $this->db->query($query_string);
         $data = $query->result();
         return $data;
@@ -68,6 +77,37 @@ class UserModel extends BaseModel
         $queryData = array(
             'username' => $username,
             'password' => $password
+        );
+        $model = new BaseModel('tbl_user');
+        return $model->getRow($field = "*", $queryData);
+    }
+
+    public function resetPassword($user_id, $password)
+    {
+        $where = array(
+            'id' => $user_id
+        );
+        $update_info = array(
+            'password' => $password
+        );
+        $model = new BaseModel('tbl_user');
+        return $model->update($update_info, $where);
+    }
+
+    public function getUserPasswordByUserId($user_id)
+    {
+        $queryData = array(
+            'id' => $user_id
+        );
+        $model = new BaseModel('tbl_user');
+        $data = $model->getRow($field = "*", $queryData);
+        return $data["password"];
+    }
+
+    public function checkUserInformation($username)
+    {
+        $queryData = array(
+            'username' => $username
         );
         $model = new BaseModel('tbl_user');
         return $model->getRow($field = "*", $queryData);
